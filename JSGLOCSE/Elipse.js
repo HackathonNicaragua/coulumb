@@ -1,11 +1,13 @@
 function Centros_Eventuales(Parametro,ProyeccionActiva)
 {
+	XTemp = 0;
+	YTemp = 0;
 
 	for (var I = 0; I <= 23; I++)
 	{
 		for (var J = 0; J <= Proyecciones[ProyeccionActiva].MarcadorCollecion.length; J++) 
 		{
-			Proyecciones[J].MarcadorCollecion[I].
+			XTemp = XTemp + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadorCollecion[J].X);
 		}
 	}
 
