@@ -58,6 +58,7 @@ function Dispersion()
 
 	Proyecciones[ProyeccionActiva].YDispersion = Proyecciones[ProyeccionActiva].YDispersion / 23;
 
+	Dimension_Dispersion();
 }
 
 function Dimension_Dispersion()
@@ -65,16 +66,22 @@ function Dimension_Dispersion()
 	Proyecciones[ProyeccionActiva].XSigma = Math.sqrt(Proyecciones[ProyeccionActiva].XDispersion);
 
 	Proyecciones[ProyeccionActiva].YSigma = Math.sqrt(Proyecciones[ProyeccionActiva].YDispersion);
+
+	Exactitud_Variables_Aleatorias();
 }
 
 function Exactitud_Variables_Aleatorias()
 {
+	Proyecciones[ProyeccionActiva].XExactitud = (1 / (Proyecciones[ProyeccionActiva].XSigma * Math.sqrt(2) ) );
 
+	Proyecciones[ProyeccionActiva].YExactitud = (1 / (Proyecciones[ProyeccionActiva].YSigma * Math.sqrt(2) ) );	
+
+	Momento_Correlacion();
 }
 
 function Momento_Correlacion()
 {
-
+	
 }
 
 function Coeficiente_Correlacion()
