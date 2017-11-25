@@ -5,7 +5,6 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	{
 		for (var J = 0; J <= Proyecciones[ProyeccionActiva].MarcadorCollecion.length; J++) 
 		{
-			Proyecciones[J].MarcadorCollecion[I].
 		}
 	}
 
