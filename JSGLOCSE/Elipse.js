@@ -5,21 +5,23 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 
 	for (var I = 0; I <= 23; I++)
 	{
-		for (var J = 0; J <= Proyecciones[ProyeccionActiva].MarcadorCollecion.length; J++) 
+		for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadorCollecion.length)-1; J++) 
 		{
+
 			XTemp = XTemp + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadorCollecion[J].X);
+
+			YTemp = YTemp + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Y);
+		
+			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I]);
 		}
+
+		Proyecciones[ProyeccionActiva].CentrosEventuales[I].X= XTemp/Suma;  
+		
+		Proyecciones[ProyeccionActiva].CentrosEventuales[I].Y= YTemp/Suma;  
 	}
 
-	for (var I = 0; I <= 23; I++) 
-	{
-		
-	}
 
-	for (var I = 0; I <= 23; I++) 
-	{
-		
-	}
+	
 }
 
 function Dispersion()
