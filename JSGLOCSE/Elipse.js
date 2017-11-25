@@ -95,18 +95,22 @@ function Momento_Correlacion()
 
 function Coeficiente_Correlacion()
 {
-	
+	Proyecciones[ProyeccionActiva].R = ( Proyecciones[ProyeccionActiva].XYCorrelacion / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma) );	
+
+	Angulo_Eje_Simetria();
 }
 
 function Angulo_Eje_Simetria()
 {
+	Proyecciones[ProyeccionActiva].Angulo = ( (1/2) * (Math.atan( ( (2*Proyecciones[ProyeccionActiva].XYCorrelacion) / (XDispersion - YDispersion) ) ) ) ) * ((Math.PI / 180));
 
+	Desviaciones_Medio_Cuadraticas();
 }
 
 function Desviaciones_Medio_Cuadraticas()
 {
-
-}
+	Proyecciones[ProyeccionActiva].FhiSigma2 = ( ( Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2) * Math.(Math.cos(Proyecciones[ProyeccionActiva].Angulo)) ) + () + () );
+}	
 
 function Exactitud_Nuevo_Eje()
 {
