@@ -1,9 +1,6 @@
 // Variables del mapa //
 var Mapa = null;
-var NE = null;
-var NW = null;
-var SE = null;
-var SW = null; 
+var Rectangulo = null;
 var UltimoCentro = null;
 
  // Inicializacion del mapa
@@ -15,54 +12,16 @@ var UltimoCentro = null;
           zoom: 15
         });
 
-        // Puntos Cardinales
-        var NE = Mapa.getBounds().getNorthEast();
-		var SW = Mapa.getBounds().getSouthWest();		
-		var NW = new google.maps.LatLng(NE.lat(),SW.lng());		
-		var SE = new google.maps.LatLng(SW.lat(),NE.lng()); 
-
-		Mapa.addListener('center_changed', function() 
+        
+		Mapa.addListener('bounds_changed', function() 
 		{
 			if(Rectangulo != null)
 			{
-				 if(Mapa.getBounds().contains(NE) == false)
-				 {
-				 	UltimoCentro = Mapa.getCenter();
-				 }	
-				 else
-				 {
-				    Mapa.setCenter(UltimoCentro);	
-				 }
-
-				 if(Mapa.getBounds().contains(SW) == false)
-				 {
-				 	UltimoCentro = Mapa.getCenter();
-				 }	
-				 else
-				 {
-				    Mapa.setCenter(UltimoCentro);	
-				 }
-
-				 
-				 if(Mapa.getBounds().contains(NW) == false)
-				 {
-				 	UltimoCentro = Mapa.getCenter();
-				 }	
-				 
-				 else
-				 {
-				    Mapa.setCenter(UltimoCentro);	
-				 }
-
-				 if (Mapa.getBounds().contains(SE) == false)
-				 {
-				    UltimoCentro = Mapa.getCenter();
-				 }
-				 else
-				 {
-				 	Mapa.setCenter(UltimoCentro);	
-				 }
-
+			    if(Mapa.getBounds().contains(UltimoCentro) == false)
+			    {
+			    	Mapa.setCenter(UltimoCentro);
+			    }				 
+  
 			}
 		});
  }
@@ -83,6 +42,7 @@ var UltimoCentro = null;
           bounds: Mapa.getBounds()
       });
 
+ 	  UltimoCentro = Mapa.getCenter();
  	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event) 
  	  {
             // Poner aqui metodo para poner el mapa

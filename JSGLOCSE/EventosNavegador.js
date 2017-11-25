@@ -11,12 +11,6 @@ $( document ).ready(function()
 	// Inicializamos el mapa
  	InicializarMapa();
 
- 	// Puntos Cardinales
-    NE = Mapa.getBounds().getNorthEast();
-	SW = Mapa.getBounds().getSouthWest();		
-	NW = new google.maps.LatLng(NE.lat(),SW.lng());		
-	SE = new google.maps.LatLng(SW.lat(),NE.lng()); 
-
 
 
  	// Recogemos las referencias de los elementos del DOM
