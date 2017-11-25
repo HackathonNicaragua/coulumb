@@ -102,22 +102,32 @@ function Coeficiente_Correlacion()
 
 function Angulo_Eje_Simetria()
 {
-	Proyecciones[ProyeccionActiva].Angulo = ( (1/2) * (Math.atan( ( (2*Proyecciones[ProyeccionActiva].XYCorrelacion) / (XDispersion - YDispersion) ) ) ) ) * ((Math.PI / 180));
+	Proyecciones[ProyeccionActiva].Angulo = ( (0.5) * (Math.atan( ( (2*Proyecciones[ProyeccionActiva].XYCorrelacion) / (XDispersion - YDispersion) ) ) ) );
 
 	Desviaciones_Medio_Cuadraticas();
 }
 
 function Desviaciones_Medio_Cuadraticas()
 {
-	Proyecciones[ProyeccionActiva].FhiSigma2 = ( ( Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2) * Math.(Math.cos(Proyecciones[ProyeccionActiva].Angulo)) ) + () + () );
+	Proyecciones[ProyeccionActiva].FhiSigma2 = ( ( Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2) * Math.pow(Math.cos(Proyecciones[ProyeccionActiva].Angulo), 2) ) + ( Proyecciones[ProyeccionActiva].R * Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma * Math.sin(2*Proyecciones[ProyeccionActiva].Angulo)  ) + ( Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2) * Math.pow(Math.sin(Proyecciones[ProyeccionActiva].Angulo), 2) ) );
+
+	Proyecciones[ProyeccionActiva].PhiSigma2 = ( ( Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2) * Math.pow(Math.sin(Proyecciones[ProyeccionActiva].Angulo), 2) ) + ( Proyecciones[ProyeccionActiva].R * Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma * Math.sin(2*Proyecciones[ProyeccionActiva].Angulo)  ) + ( Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2) * Math.pow(Math.cos(Proyecciones[ProyeccionActiva].Angulo), 2) ) );
+
+	Exactitud_Nuevo_Eje();
 }	
 
 function Exactitud_Nuevo_Eje()
 {
+	Proyecciones[ProyeccionActiva].FhiExactitud = (1 / ( Math.sqrt(2) * Math.sqrt( Proyecciones[ProyeccionActiva].FhiSigma2 ) ) );
 
+	Proyecciones[ProyeccionActiva].PhiExactitud = (1 / ( Math.sqrt(2) * Math.sqrt( Proyecciones[ProyeccionActiva].PhiSigma2 ) ) ); 
+
+	Radios_Elipse_Sistema();
 }
 
 function Radios_Elipse_Sistema()
 {
+	Proyecciones[ProyeccionActiva].FhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].FhiExactitud);
 
+	Proyecciones[ProyeccionActiva].PhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].PhiExactitud); 
 }
