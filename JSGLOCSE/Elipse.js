@@ -81,12 +81,21 @@ function Exactitud_Variables_Aleatorias()
 
 function Momento_Correlacion()
 {
-	
+	Proyecciones[ProyeccionActiva].XYCorrelacion = 0;
+
+	for (var I = 0; I <= 23; I++)
+	{
+		Proyecciones[ProyeccionActiva].XYCorrelacion = Proyecciones[ProyeccionActiva].XYCorrelacion + ( (Proyecciones[ProyeccionActiva].CentrosEventuales[I].X - Proyecciones[ProyeccionActiva].XCentro) * (Proyecciones[ProyeccionActiva].CentrosEventuales[I].Y - Proyecciones[ProyeccionActiva].YCentro) );
+	}		
+
+	Proyecciones[ProyeccionActiva].XYCorrelacion = (Proyecciones[ProyeccionActiva].XYCorrelacion / 23);
+
+	Coeficiente_Correlacion();
 }
 
 function Coeficiente_Correlacion()
 {
-
+	
 }
 
 function Angulo_Eje_Simetria()
