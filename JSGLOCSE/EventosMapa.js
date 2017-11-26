@@ -21,6 +21,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
            'https://k60.kn3.net/2/5/1/F/E/5/57F.png',
            'https://k60.kn3.net/3/2/C/A/2/7/EB4.png',
            'https://k60.kn3.net/4/4/5/4/7/1/DA7.png']
+ var PinConsumidores = [];
  // Inicializacion del mapa
  function InicializarMapa()
  {
@@ -356,4 +357,83 @@ function PuntoALatLng(Punto)
   var Escala = Math.pow(2, Mapa.getZoom());
   var CoordenadaMundo = new google.maps.Point(Punto.x / Escala + IzquierdaInferior.x, Punto.y / Escala + TopeDerecha.y);
   return Mapa.getProjection().fromPointToLatLng(CoordenadaMundo);
+}
+
+
+
+
+/* Muestra en pantalla todos los consumidores por su categoria */
+function MostrarConsumidores(Coordenadas, MapaCanvas) {
+    VentanaInformacion = new google.maps.InfoWindow({ content: '' });
+    var Servicio = new google.maps.places.PlacesService(Mapa);
+    var Tipos = ['accounting', 'airport', 'amusement_park', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'cemetery', 'church', 'city_hall', 'clothing_store', 'convenience_store', 'courthouse', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'embassy', 'fire_station', 'florist', 'funeral_home', 'furniture_store', 'gas_station', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'insurance_agency', 'jewelry_store', 'laundry', 'lawyer', 'library', 'liquor_store', 'local_government_office', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'moving_company', 'museum', 'night_club', 'painter', 'park', 'parking', 'pet_store', 'pharmacy', 'physiotherapist', 'plumber', 'police', 'post_office', 'real_estate_agency', 'restaurant', 'roofing_contractor', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'stadium', 'storage', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'transit_station', 'travel_agency', 'university', 'veterinary_care', 'zoo'];    
+
+
+    var PinesCategoria = ['https://k60.kn3.net/A/B/1/4/6/2/630.png', 'https://k61.kn3.net/5/1/5/F/8/B/19F.png', 'https://k60.kn3.net/D/9/7/A/5/F/A3F.png'];
+    for (I = 0; I < Tipos.length; I++) {
+        Servicio.nearbySearch({
+            location: UltimoCentro,
+            radius: ZoomMinimo * 250,
+            types: [Tipos[I]]
+        }, EstadoBusqueda);
+    }
+    function EstadoBusqueda(Resultado, Estado) {
+        if (Estado === google.maps.places.PlacesServiceStatus.OK) {
+            for (var I = 0; I < Resultado.length; I++) {
+                CrearMarcador(Resultado[I]);
+            }
+        }
+    }
+
+    function CrearMarcador(Lugar) {
+        switch (Lugar.types[0]) {
+            // Primera Categoria
+            case 'hospital':
+            case 'airport':
+                TipoDeIcono = PinesCategoria[0];
+                Lugar.Categoria = '1';
+                break;
+
+            // Segunda categoria
+            case 'local_government_office':
+            case 'bank':
+            case 'doctor':
+            case 'fire_station':
+            case 'university':
+            case 'insurance_agency':
+            case 'amusement_park':
+                TipoDeIcono = PinesCategoria[1];
+                Lugar.Categoria = '2';
+                break;
+
+            // Tercera Categoria
+            default:
+                TipoDeIcono = PinesCategoria[2];
+                Lugar.Categoria = '3';
+        }
+
+        var LugarMarcador = new google.maps.Marker(
+            {
+                map: Mapa,
+                icon: TipoDeIcono,
+                position: Lugar.geometry.location,
+                Informacion: Lugar
+            });        
+        PinConsumidores.push({ Posicion: LugarMarcador, Tipo: Lugar.types[0] });
+        google.maps.event.addListener(LugarMarcador, 'mouseover', function () {
+            var CadenaHTML = '<strong style="  text-align: center;">Ubicación: </strong>' + Lugar.name + '<br><strong>Dirección: </strong>' + Lugar.vicinity + '<br><strong>Latitud: </strong>' + Lugar.geometry.location.lat() + '<br><strong>Longitud: </strong>' + Lugar.geometry.location.lng() + '<br><strong>Categoria : </strong>' + Lugar.Categoria;
+            VentanaInformacion = new google.maps.InfoWindow
+                ({
+                    content: CadenaHTML
+                });
+            VentanaInformacion.open(Mapa, this);
+
+        });
+
+        google.maps.event.addListener(LugarMarcador, 'mouseout', function () {
+            VentanaInformacion.close();
+        });
+
+
+    }
 }

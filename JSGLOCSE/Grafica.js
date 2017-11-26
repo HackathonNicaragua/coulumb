@@ -1,6 +1,6 @@
 var ArreglosGrafica = new Array();
 
-function Datos_Graficas(Proyecciones, ProyeccionActiva)
+function Datos_Graficas(Proyecciones,ProyeccionActiva)
 {
 	//Nombre temporal de canvas, asignacion de nombre, una vez esté terminada la interfaz
 	$("#GraficaA").empty();	
@@ -13,8 +13,6 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 	$("#GraficaH").empty();	
 	$("#GraficaI").empty();	
 	$("#GraficaJ").empty();	
-
-	Medidas_Variacion();
 	
 	Consumidores(Proyecciones, ProyeccionActiva);
 }
@@ -47,7 +45,7 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
 	var ctx = document.getElementById('Grafica' + (letras[J]).toString()).getContext('2d');
     var Grafica = {
-        type: 'roundedBar',
+        type: 'bar',
         data:
         {
             labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
