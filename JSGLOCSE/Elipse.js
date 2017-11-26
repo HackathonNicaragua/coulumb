@@ -377,4 +377,8 @@ function URLCentroElipse(Centro)
             break;
     }
     return URLImagen;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9ea804c6bbf7b7551f599f2184ef1d4e50ef4d36
