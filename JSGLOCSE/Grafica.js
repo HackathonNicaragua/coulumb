@@ -20,15 +20,24 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 
 function Consumidores(Proyecciones, ProyeccionActiva)
 {
+	Proyecciones[ProyeccionActiva].Sumatoria = new Array();
 	var Horas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	 //Realizacion de Graficos de Barras por Consumidor
     for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
         ArreglosGrafica.push(Graficando_Consumidores(Proyecciones, ProyeccionActiva, J));
     }
+
+    //Realizacion de Grafico de Barra TOTAL
+    for (var I = 0; I <= 23; I++) {
+        for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
+            Proyecciones[ProyeccionActiva].Sumatoria[0][I] = Proyecciones[ProyeccionActiva].Sumatoria[0][I] + Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I];
+        }
+    }
+
 }
 
-function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
+function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
 	var ctx = document.getElementById('Grafica' + (Alfabeto[J]).toString()).getContext('2d');
     var Grafica = {
@@ -149,4 +158,9 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
     }
     var chart = new Chart(ctx, Grafica);
     return chart;
+}
+
+function Graficando_Sumatoria(ProyeccionActiva) 
+{
+
 }
