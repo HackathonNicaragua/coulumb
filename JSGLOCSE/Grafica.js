@@ -168,9 +168,12 @@ function Graficando_Hill()
 
 		for (J = LimitY1; J <= LimitY2 - 1; J++)
 		{
-			
+			Auxiliar.push((((1) / (2 * (Math.PI) * (Proyecciones[ProyeccionActiva].XSigma) * (Proyecciones[ProyeccionActiva].YSigma) * (Math.sqrt(1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2)))))) * (Math.pow((Math.E), (((-1 / (2 * (1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2))))) * (((Math.pow((I - Proyecciones[ProyeccionActiva].XCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2))) - (((2 * Proyecciones[ProyeccionActiva].R) * (I - Proyecciones[ProyeccionActiva].XCentro) * (J - Proyecciones[ProyeccionActiva].YCentro)) / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma)) + ((Math.pow((J - Proyecciones[ArreglosGrafica].YCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2))))))))));
 		}
-
+		
+		Puntos_Z.push(Auxiliar);
 	}
-
 }
+
+
+
