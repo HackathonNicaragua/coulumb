@@ -172,7 +172,8 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           animation: google.maps.Animation.DROP
         });
 
-        google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(marker, 'click', function() 
+        {
           $('#ContenedorEmergente').show(500);
           document.getElementById('ContenedorEmergente').style.left = posicionx + 'px';
           document.getElementById('ContenedorEmergente').style.top = posiciony + 'px';
