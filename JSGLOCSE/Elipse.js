@@ -130,6 +130,8 @@ function Radios_Elipse_Sistema()
 	Proyecciones[ProyeccionActiva].FhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].FhiExactitud);
 
 	Proyecciones[ProyeccionActiva].PhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].PhiExactitud); 
+
+	Puntos_Elipse();
 }
 
 function Puntos_Elipse()
@@ -160,4 +162,10 @@ function Puntos_Elipse()
 		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].Puntos_Y[I] + Proyecciones[ProyeccionActiva].YCentro;
 	}
 
+}
+
+
+function Medidas_Variacion()
+{
+	
 }
