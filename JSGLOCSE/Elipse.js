@@ -375,25 +375,4 @@ function URLCentroElipse(Centro)
             break;
     }
     return URLImagen;
-
 }
-
-
-function OcultarCentrosEventuales(Parametro , Mapa)
-{
-   if(Parametro == 1)
-   {
-   		for (var i = 0; i < 24; i++) 
-   		{
-   			Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(Mapa);
-   			
-   		} 
-   }
-   else
-   {
-
-   }
-}
-
- 
-

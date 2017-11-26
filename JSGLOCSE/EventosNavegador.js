@@ -260,7 +260,7 @@ $('#sb_googlemaps').click(function(event)
     document.getElementById('centrosproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].CentrosEventuales.length).toString() + " / 24";
     document.getElementById('Radiox').innerHTML = ((Proyecciones[ProyeccionActiva].XCentro).toFixed(2)).toString();
     document.getElementById('Radioy').innerHTML = ((Proyecciones[ProyeccionActiva].YCentro).toFixed(2)).toString();
-
+    ActualizarTabla();
   });
 
 
