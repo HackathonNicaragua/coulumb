@@ -162,6 +162,15 @@ function Graficando_Hill()
 	LimitY1 = Proyecciones[ProyeccionActiva].YCentro - Proyecciones[ProyeccionActiva].PhiRadio;
 	LimitY2 = Proyecciones[ProyeccionActiva].YCentro + Proyecciones[ProyeccionActiva].PhiRadio;
 
+	for (var I = LimitX1; I <= LimitX2; I++) 
+	{
+		Auxiliar = [];
+
+		for (J = LimitY1; J <= LimitY2 - 1; J++)
+		{
+			
+		}
+
+	}
 
 }
-
