@@ -81,13 +81,8 @@ $( document ).ready(function()
     if(this.className == 'switch on' ){
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
-<<<<<<< HEAD
+
     }else{
-=======
-    }
-    else
-    {
->>>>>>> da0e28fc4acaa7788a7498aca2abf29dcedb897a
       MuestraOcultaC(null);
     }
   });
@@ -109,9 +104,6 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
-<<<<<<< HEAD
-=======
-
     }
   });
 
@@ -125,8 +117,6 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       
-
->>>>>>> da0e28fc4acaa7788a7498aca2abf29dcedb897a
     }
   });
 
