@@ -79,7 +79,6 @@ $( document ).ready(function()
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
     }else{
-<<<<<<< HEAD
       MuestraOcultaC(null);
     }
   });
@@ -101,13 +100,11 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
-=======
-      MuestraOculta(null);      
     }
   });
 
 
-  $('#switchcarga').click(function (event) 
+  $('#switchcarga').click(function (event)
   {
 
     $(this).toggleClass('on');
@@ -116,20 +113,19 @@ $( document ).ready(function()
       $(this).toggleClass('off');
       //alert("Markers Activos");
     }else{
-      MuestraOculta(null);      
+      MuestraOculta(null);
     }
   });
 
 
-  $('#switchconsumidores').click(function (event) 
+  $('#switchconsumidores').click(function (event)
   {
     $(this).toggleClass('on');
     if(this.className == 'switch on' ){
       MostrarConsumidores(Mapa.getCenter(), Mapa)
-      $(this).toggleClass('off');      
+      $(this).toggleClass('off');
     }else{
       MostrarConsumidores(Mapa.getCenter(), null)
->>>>>>> 6bc58132f2799b6e2925da2a8f9b35586aed7023
     }
   });
 

@@ -21,6 +21,28 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
            'https://k60.kn3.net/2/5/1/F/E/5/57F.png',
            'https://k60.kn3.net/3/2/C/A/2/7/EB4.png',
            'https://k60.kn3.net/4/4/5/4/7/1/DA7.png']
+
+var url2 = ['https://k60.kn3.net/2/0/C/3/9/9/935.png',
+          'https://k60.kn3.net/0/E/E/A/5/2/E60.png',
+          'https://k60.kn3.net/B/4/A/1/C/E/897.png',
+          'https://k60.kn3.net/0/3/4/A/0/8/818.png',
+          'https://k60.kn3.net/3/8/1/9/C/F/775.png',
+          'https://k60.kn3.net/1/5/2/5/8/0/3B9.png',
+          'https://k60.kn3.net/5/F/0/8/C/D/EB3.png',
+          'https://k60.kn3.net/7/B/D/C/B/D/10C.png',
+          'https://k60.kn3.net/F/9/1/3/A/9/625.png',
+          'https://k60.kn3.net/B/5/C/8/6/D/22C.png']
+
+var url3 = ['https://k60.kn3.net/D/1/5/E/0/C/E8D.png',
+          'https://k60.kn3.net/2/B/C/E/2/E/FEC.png',
+          'https://k60.kn3.net/4/D/8/8/D/1/DC3.png',
+          'https://k60.kn3.net/C/0/6/A/7/6/CD2.png',
+          'https://k60.kn3.net/2/5/E/7/F/B/AAA.png',
+          'https://k60.kn3.net/6/3/F/0/8/4/23F.png',
+          'https://k60.kn3.net/C/2/7/C/D/8/C60.png',
+          'https://k60.kn3.net/D/C/0/B/8/0/0A4.png',
+          'https://k60.kn3.net/1/3/4/8/8/0/92F.png',
+          'https://k60.kn3.net/1/3/3/3/C/4/B96.png']
  var PinConsumidores = [];
  // Inicializacion del mapa
  function InicializarMapa()
@@ -181,15 +203,23 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           y: posiciony
         });
 
-        var image = {
+        var imageA = {
           url: url1[Proyecciones[ProyeccionActiva].Contador]
+        };
+
+        var imageB = {
+          url: url2[Proyecciones[ProyeccionActiva].Contador]
+        };
+
+        var imageC = {
+          url: url3[Proyecciones[ProyeccionActiva].Contador]
         };
 
         var marker = new google.maps.Marker({
           position: myLatlng,
           title: letras[Proyecciones[ProyeccionActiva].Contador]+"1",
           draggable: true,
-          icon: image.url,
+          icon: imageA.url,
           map:Mapa,
           animation: google.maps.Animation.DROP,
           visible: true
@@ -366,7 +396,7 @@ function PuntoALatLng(Punto)
 function MostrarConsumidores(Coordenadas, MapaCanvas) {
     VentanaInformacion = new google.maps.InfoWindow({ content: '' });
     var Servicio = new google.maps.places.PlacesService(Mapa);
-    var Tipos = ['accounting', 'airport', 'amusement_park', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'cemetery', 'church', 'city_hall', 'clothing_store', 'convenience_store', 'courthouse', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'embassy', 'fire_station', 'florist', 'funeral_home', 'furniture_store', 'gas_station', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'insurance_agency', 'jewelry_store', 'laundry', 'lawyer', 'library', 'liquor_store', 'local_government_office', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'moving_company', 'museum', 'night_club', 'painter', 'park', 'parking', 'pet_store', 'pharmacy', 'physiotherapist', 'plumber', 'police', 'post_office', 'real_estate_agency', 'restaurant', 'roofing_contractor', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'stadium', 'storage', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'transit_station', 'travel_agency', 'university', 'veterinary_care', 'zoo'];    
+    var Tipos = ['accounting', 'airport', 'amusement_park', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'cemetery', 'church', 'city_hall', 'clothing_store', 'convenience_store', 'courthouse', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'embassy', 'fire_station', 'florist', 'funeral_home', 'furniture_store', 'gas_station', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'insurance_agency', 'jewelry_store', 'laundry', 'lawyer', 'library', 'liquor_store', 'local_government_office', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'moving_company', 'museum', 'night_club', 'painter', 'park', 'parking', 'pet_store', 'pharmacy', 'physiotherapist', 'plumber', 'police', 'post_office', 'real_estate_agency', 'restaurant', 'roofing_contractor', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'stadium', 'storage', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'transit_station', 'travel_agency', 'university', 'veterinary_care', 'zoo'];
 
 
     var PinesCategoria = ['https://k60.kn3.net/A/B/1/4/6/2/630.png', 'https://k61.kn3.net/5/1/5/F/8/B/19F.png', 'https://k60.kn3.net/D/9/7/A/5/F/A3F.png'];
@@ -418,7 +448,7 @@ function MostrarConsumidores(Coordenadas, MapaCanvas) {
                 icon: TipoDeIcono,
                 position: Lugar.geometry.location,
                 Informacion: Lugar
-            });        
+            });
         PinConsumidores.push({ Posicion: LugarMarcador, Tipo: Lugar.types[0] });
         google.maps.event.addListener(LugarMarcador, 'mouseover', function () {
             var CadenaHTML = '<strong style="  text-align: center;">Ubicación: </strong>' + Lugar.name + '<br><strong>Dirección: </strong>' + Lugar.vicinity + '<br><strong>Latitud: </strong>' + Lugar.geometry.location.lat() + '<br><strong>Longitud: </strong>' + Lugar.geometry.location.lng() + '<br><strong>Categoria : </strong>' + Lugar.Categoria;
