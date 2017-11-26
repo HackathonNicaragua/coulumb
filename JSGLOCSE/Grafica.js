@@ -68,6 +68,7 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
                     ],
                     borderColor:
                     [
+                    //Mismos colores anteriores
                         '#626EEF',
                         '#FF5757',
                         '#4BC0C0',
