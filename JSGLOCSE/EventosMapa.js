@@ -72,12 +72,12 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         }
     });
 
-	
+
 
 
         // Create the search box and link it to the UI element.
         var input = document.getElementById('BusquedaLugar');
-        var searchBox = new google.maps.places.SearchBox(input);        
+        var searchBox = new google.maps.places.SearchBox(input);
 
         // Bias the SearchBox results towards current map's viewport.
         Mapa.addListener('bounds_changed', function() {
@@ -235,7 +235,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : OperacionesTabla(2, null) , X:posicionx, Y:posiciony, Categoria: 1});
  }
 
- function MuestraOculta(statu){
+ function MuestraOcultaC(statu){
         //recorremos todos los markes de la lista
         for(i=0;Proyecciones[ProyeccionActiva].MarcadoresCollecion.length;i++){
                     //comparamos si el marker actual en el recorrido es visible
@@ -246,6 +246,36 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
               Proyecciones[ProyeccionActiva].MarcadoresCollecion[i].Marcador.setMap(statu);
             }
         }
+}
+
+function MuestraOcultaCE(statu){
+       //recorremos todos los markes de la lista
+       for(i=0;Proyecciones[ProyeccionActiva].CentrosEventuales.length;i++){
+                   //comparamos si el marker actual en el recorrido es visible
+           if(Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador == null)
+           {
+             Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(statu);
+           }else {
+             Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(statu);
+           }
+       }
+}
+
+function MuestraOcultaE(statu){
+       //recorremos todos los markes de la lista
+       for(i=0;i<=2;i++){
+                   //comparamos si el marker actual en el recorrido es visible
+           if(Proyecciones[i].Elipse == null)
+           {
+             if(Proyecciones[i].Elipse != null){
+                Proyecciones[i].Elipse.setMap(statu);
+              }
+             Proyecciones[i].CentroElipse.setMap(statu);
+           }else {
+             Proyecciones[i].Elipse.setMap(statu);
+             Proyecciones[i].CentroElipse.setMap(statu)
+           }
+       }
 }
 
 

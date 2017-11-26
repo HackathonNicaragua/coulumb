@@ -76,14 +76,30 @@ $( document ).ready(function()
 
     $(this).toggleClass('on');
     if(this.className == 'switch on' ){
-      MuestraOculta(Mapa);
+      MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
-      //alert("Markers Activos");
     }else{
-      MuestraOculta(null);
+      MuestraOcultaC(null);
+    }
+  });
 
-      //alert("Markers Desactivos");
-      //$(this).toggleClass('off');
+  $('#switchcentroseventuales').click(function (event){
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      MuestraOcultaCE(Mapa);
+      $(this).toggleClass('off');
+    }else{
+      MuestraOcultaCE(null);
+    }
+  });
+
+  $('#switchelipse').click(function (event){
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      MuestraOcultaE(Mapa);
+      $(this).toggleClass('off');
+    }else{
+      MuestraOcultaE(null);
     }
   });
 
