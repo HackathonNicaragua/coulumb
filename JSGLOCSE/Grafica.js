@@ -14,7 +14,7 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 	$("#GraficaI").empty();	
 	$("#GraficaJ").empty();	
 	
-	Consumidores(Proyecciones, ProyeccionActual);
+	Consumidores(Proyecciones, ProyeccionActiva);
 }
 
 function Consumidores(Proyecciones, ProyeccionActiva)
@@ -154,5 +154,14 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 
 function Graficando_Hill()
 {
-	
+	var Puntos_Z = new Array();
+
+	LimitX1 = Proyecciones[ProyeccionActiva].XCentro - Proyecciones[ProyeccionActiva].FhiRadio;
+	LimitX2 = Proyecciones[ProyeccionActiva].XCentro + Proyecciones[ProyeccionActiva].FhiRadio;
+
+	LimitY1 = Proyecciones[ProyeccionActiva].YCentro - Proyecciones[ProyeccionActiva].PhiRadio;
+	LimitY2 = Proyecciones[ProyeccionActiva].YCentro + Proyecciones[ProyeccionActiva].PhiRadio;
+
+
 }
+
