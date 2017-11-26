@@ -119,12 +119,12 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         });
 
         var image = {
-          url: url1[numpin]
+          url: url1[Proyecciones[ProyeccionActiva].Contador]
         };
 
         var marker = new google.maps.Marker({
           position: myLatlng,
-          title: letras[numpin]+"1",
+          title: letras[Proyecciones[ProyeccionActiva].Contador]+"1",
           draggable: true,
           icon: image.url,
           map:Mapa,
@@ -135,6 +135,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         {
           OperacionesTabla(3,Indice(marker.title).Horas);
           $('#ContenedorEmergente').show(500);
+          document.getElementById('ctitulo').innerHTML = 'Consumidor '+ marker.title;
           document.getElementById('ContenedorEmergente').style.left = posicionx + 'px';
           document.getElementById('ContenedorEmergente').style.top = posiciony + 'px';
           document.getElementById('clatitud').value = marker.getPosition().lat();
@@ -202,11 +203,11 @@ function OperacionesTabla(Caso, Arreglo)
 
 function PotenciasAleatorias()
 {
-	for (var I = 0; I <= Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++) 
+	for (var I = 0; I < Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++) 
 	{
 		for (var J = 0; J <= 23; J++) 
 		{
-			Proyecciones[ProyeccionActiva].MarcadoresCollecion[I].Horas[J] =Math.floor((Math.random() * 100) + 1);
+			Proyecciones[ProyeccionActiva].MarcadoresCollecion[I].Horas[J] = Math.floor((Math.random() * 100) + 1);
 		}
 	}
 }
