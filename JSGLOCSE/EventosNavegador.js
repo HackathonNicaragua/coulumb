@@ -173,6 +173,11 @@ $('#sb_googlemaps').click(function(event)
     document.getElementById('containermapa').style.display = 'none';
     document.getElementById('containergraficas').style.display = 'none';
     document.getElementById('containerreportes').style.display = 'block';
+    document.getElementById('cargasproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length).toString() + " / 10";
+    document.getElementById('centrosproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].CentrosEventuales.length).toString() + " / 24";
+    document.getElementById('Radiox').innerHTML = ((Proyecciones[ProyeccionActiva].XCentro).toFixed(2)).toString();
+    document.getElementById('Radioy').innerHTML = ((Proyecciones[ProyeccionActiva].YCentro).toFixed(2)).toString();
+
   });
 
 
