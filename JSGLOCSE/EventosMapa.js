@@ -10,18 +10,8 @@ var ZoomMinimo;
 var referencia = null;
 var listmarker = [];
 var letras = ['A','B','C','D','E','F','G','H','I','J'];
-var numpin = 0;
-var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
-           'https://k60.kn3.net/A/9/6/F/4/2/E48.png',
-           'https://k60.kn3.net/8/3/F/5/3/E/8FD.png',
-           'https://k60.kn3.net/7/0/1/8/8/1/B61.png',
-           'https://k60.kn3.net/C/1/6/8/C/C/886.png',
-           'https://k60.kn3.net/8/9/A/9/0/1/F2E.png',
-           'https://k60.kn3.net/8/6/7/C/F/E/498.png',
-           'https://k60.kn3.net/2/5/1/F/E/5/57F.png',
-           'https://k60.kn3.net/3/2/C/A/2/7/EB4.png',
-           'https://k60.kn3.net/4/4/5/4/7/1/DA7.png']
- var PinConsumidores = [];
+
+var PinConsumidores = [];
  // Inicializacion del mapa
  function InicializarMapa()
  {
@@ -180,23 +170,17 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           x: posicionx,
           y: posiciony
         });
-
-        var image = {
-          url: url1[Proyecciones[ProyeccionActiva].Contador]
-        };
+      
 
         var marker = new google.maps.Marker({
           position: myLatlng,
           title: letras[Proyecciones[ProyeccionActiva].Contador]+"1",
           draggable: true,
-          icon: image.url,
+	      icon: Proyecciones[ProyeccionActiva].url[Proyecciones[ProyeccionActiva].Contador],
           map:Mapa,
           animation: google.maps.Animation.DROP,
           visible: true
-        });
-
-        listmarker.push(marker);
-
+        });       
 
 
         google.maps.event.addListener(marker, 'click', function()
@@ -366,7 +350,7 @@ function PuntoALatLng(Punto)
 function MostrarConsumidores(Coordenadas, MapaCanvas) {
     VentanaInformacion = new google.maps.InfoWindow({ content: '' });
     var Servicio = new google.maps.places.PlacesService(Mapa);
-    var Tipos = ['accounting', 'airport', 'amusement_park', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'cemetery', 'church', 'city_hall', 'clothing_store', 'convenience_store', 'courthouse', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'embassy', 'fire_station', 'florist', 'funeral_home', 'furniture_store', 'gas_station', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'insurance_agency', 'jewelry_store', 'laundry', 'lawyer', 'library', 'liquor_store', 'local_government_office', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'moving_company', 'museum', 'night_club', 'painter', 'park', 'parking', 'pet_store', 'pharmacy', 'physiotherapist', 'plumber', 'police', 'post_office', 'real_estate_agency', 'restaurant', 'roofing_contractor', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'stadium', 'storage', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'transit_station', 'travel_agency', 'university', 'veterinary_care', 'zoo'];    
+    var Tipos = ['accounting', 'airport', 'amusement_park', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'cemetery', 'church', 'city_hall', 'clothing_store', 'convenience_store', 'courthouse', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'embassy', 'fire_station', 'florist', 'funeral_home', 'furniture_store', 'gas_station', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'insurance_agency', 'jewelry_store', 'laundry', 'lawyer', 'library', 'liquor_store', 'local_government_office', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'moving_company', 'museum', 'night_club', 'painter', 'park', 'parking', 'pet_store', 'pharmacy', 'physiotherapist', 'plumber', 'police', 'post_office', 'real_estate_agency', 'restaurant', 'roofing_contractor', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'stadium', 'storage', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'transit_station', 'travel_agency', 'university', 'veterinary_care', 'zoo'];
 
 
     var PinesCategoria = ['https://k60.kn3.net/A/B/1/4/6/2/630.png', 'https://k61.kn3.net/5/1/5/F/8/B/19F.png', 'https://k60.kn3.net/D/9/7/A/5/F/A3F.png'];
@@ -418,7 +402,7 @@ function MostrarConsumidores(Coordenadas, MapaCanvas) {
                 icon: TipoDeIcono,
                 position: Lugar.geometry.location,
                 Informacion: Lugar
-            });        
+            });
         PinConsumidores.push({ Posicion: LugarMarcador, Tipo: Lugar.types[0] });
         google.maps.event.addListener(LugarMarcador, 'mouseover', function () {
             var CadenaHTML = '<strong style="  text-align: center;">Ubicación: </strong>' + Lugar.name + '<br><strong>Dirección: </strong>' + Lugar.vicinity + '<br><strong>Latitud: </strong>' + Lugar.geometry.location.lat() + '<br><strong>Longitud: </strong>' + Lugar.geometry.location.lng() + '<br><strong>Categoria : </strong>' + Lugar.Categoria;
@@ -445,14 +429,14 @@ function OcultarMostrar_CentrosDeCargaEventuales(Parametro, Proyeccion_Marcador,
     if (Parametro == 1) {
         if (Proyecciones[Proyeccion_Marcador].CentrosEventuales != null) {
             for (var I = 0; I < Proyecciones[Proyeccion_Marcador].CentrosEventuales.length; I++) {
-                Proyecciones[Proyeccion_Marcador].CentrosEventuales[I].MarcadorCentroEventual.setMap(Mapa);
+                Proyecciones[Proyeccion_Marcador].CentrosEventuales[I].Marcador.setMap(Mapa);
             }
         }
     }
     else if (Parametro == 2) {
         for (var I = 0; I < Proyecciones.length; I++) {
             for (var J = 0; J < Proyecciones[I].CentrosEventuales.length; J++) {
-                Proyecciones[I].CentrosEventuales[J].MarcadorCentroEventual.setMap(Mapa);
+                Proyecciones[I].CentrosEventuales[J].Marcador.setMap(Mapa);
             }
         }
     }
@@ -460,15 +444,13 @@ function OcultarMostrar_CentrosDeCargaEventuales(Parametro, Proyeccion_Marcador,
 
 function OcultarMostrar_Elipses(Parametro, ProyeccionNumero, Mapa) {
     if (Parametro == 1) {
-        try { Proyecciones[ProyeccionNumero].Elipse.setMap(Mapa); Proyecciones[ProyeccionNumero].Centro.setMap(Mapa); } catch (Error) { }
-        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+        try { Proyecciones[ProyeccionNumero].Elipse.setMap(Mapa); Proyecciones[ProyeccionNumero].CentroElipse.setMap(Mapa); } catch (Error) { }        
 
     }
     else if (Parametro == 2) {
         for (var I = 0; I < Proyecciones.length; I++) {
-            try { Proyecciones[I].Elipse.setMap(Mapa); Proyecciones[I].Centro.setMap(Mapa); } catch (Error) { }
-        }
-        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+            try { Proyecciones[I].Elipse.setMap(Mapa); Proyecciones[I].CentroElipse.setMap(Mapa); } catch (Error) { }
+        }        
     }
 }
 
@@ -502,5 +484,37 @@ function BuscarIndice(Arreglo, Valor, Parametro) {
         }
     }
     return null;
+
+function SwitchActivo(SwitchId)
+{
+    if(($('#'+SwitchId).attr('class')).search('on') != -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function ToogleSwitch(SwitchID)
+{
+
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == false)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+}
+
+function ToogleSwitchFalse(SwitchID)
+{
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == true)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+     
+
 }
 
