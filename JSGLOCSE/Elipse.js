@@ -1,5 +1,10 @@
 function Centros_Eventuales(Parametro,ProyeccionActiva)
 {
+	Proyecciones[ProyeccionActiva].CentrosEventuales = new Array();
+	if(Proyecciones[ProyeccionActiva].Elipse != null)
+	{
+		Proyecciones[ProyeccionActiva].Elipse.setMap(null);	 
+	}
 
 	for (var I = 0; I <= 23; I++)
 	{
@@ -176,23 +181,19 @@ function Puntos_Elipse()
 */
 	
 
-	var Poligono = new google.maps.Polygon({
+	Proyecciones[ProyeccionActiva].Elipse = new google.maps.Polygon({
           paths: Coordenadas,
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 1,
           fillColor: '#FF0000',
-          fillOpacity: 0.35
+          fillOpacity: 0.35,
+          map: Mapa
         });
-        Poligono.setMap(Mapa);
 
-
+	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
 }
 
-function Coordenadas()
-{
-
-}
 
 
 function Medidas_Variacion()
