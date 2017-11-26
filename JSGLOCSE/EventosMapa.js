@@ -96,7 +96,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 	 	  UltimoCentro = Mapa.getCenter();
 	 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
 	 	  {
-	            // Poner aqui metodo para poner el mapa
+	           
 	            if(Proyecciones[ProyeccionActiva].Contador < 10)
 	            {
 	              AnadirMarcador();
@@ -153,6 +153,17 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           referencia = marker;
 
 
+        });
+
+        google.maps.event.addListener(marker,'drag',function()
+        {
+        		if(Proyecciones[ProyeccionActiva].ElipseDibujada = true)
+        		{
+        			var referencia = Indice(marker.title);
+        			referencia.X = LatLngAPunto(marker.getPosition()).x;
+        			referencia.Y = LatLngAPunto(marker.getPosition()).y;
+        			Centros_Eventuales(1,ProyeccionActiva);
+        		};
         });
         Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : OperacionesTabla(2, null) , X:posicionx, Y:posiciony, Categoria: 1});
  }
