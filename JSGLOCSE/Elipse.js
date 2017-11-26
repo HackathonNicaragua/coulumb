@@ -378,3 +378,46 @@ function URLCentroElipse(Centro)
     }
     return URLImagen;
 }
+
+function DevolverTablaConsumidores(Proyeccion) 
+{
+    var ArregloTabla = [];
+    var ArregloFila = [];
+    ColumnasConsumidores.forEach(function (MarcadorLetra) 
+    {
+        ArregloFila = new Array();
+        var Marcador = BuscarIndice(Proyecciones[Proyeccion].MarcadoresCollecion, MarcadorLetra + (Proyeccion + 1).toString(), 1);
+        if (Marcador != null) {
+
+            ArregloFila.push(Marcador.Titulo);
+            ArregloFila.push(Marcador.Categoria);
+            ArregloFila.push(Marcador.X);
+            ArregloFila.push(Marcador.Y);
+            ArregloFila.push(Marcador.Marcador.getPosition().lat());
+            ArregloFila.push(Marcador.Marcador.getPosition().lng());
+            
+            if (Marcador.Direccion != null) {
+                ArregloFila.push(Marcador.Direccion);
+            }
+            
+            else {
+                ArregloFila.push("No disponible intentelo mas tarde");
+            }
+            ArregloTabla.push(ArregloFila);
+        }
+
+        else 
+        {
+            ArregloFila.push(MarcadorLetra + (Proyeccion + 1).toString());
+            ArregloFila.push("?");
+            ArregloFila.push("?");
+            ArregloFila.push("?");
+            ArregloFila.push("?");
+            ArregloFila.push("?");
+            ArregloFila.push("?");
+            ArregloTabla.push(ArregloFila);
+        }
+    });
+
+    return ArregloTabla;
+}

@@ -116,8 +116,7 @@ $( document ).ready(function()
       OcultarMostrar_Cargas(2,null,Mapa);
       $(this).toggleClass('off');
     }else{
- 
-    }
+  }
   });
 
 
