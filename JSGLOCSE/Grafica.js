@@ -23,6 +23,21 @@ function Consumidores(Proyecciones, ProyeccionActiva)
 {
 	var Horas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+	
+	
+	if (ArreglosGrafica.length > 0) 
+	{
+        ArreglosGrafica.forEach(function (GraficaConsumidor) 
+        {
+        	if (GraficaConsumidor != null) 
+        	{
+                GraficaConsumidor.destroy();
+            }
+        });
+    }
+
+	
+
 	 //Realizacion de Graficos de Barras por Consumidor
     for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
         ArreglosGrafica.push(Graficando_Consumidores(Proyecciones, ProyeccionActiva, J));
@@ -154,8 +169,22 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
     return chart;
 }
 
-function Graficando_Hill()
+function Graficando_Hill(XPoint, YPoint, XSigma, YSigma, r, PUNTOS_X, PUNTOS_Y, RadioX, RadioY,NGrafica)
 {
+	var VariacionColor;
+    if(NGrafica == 1)
+    {
+        VariacionColor = 'Bluered';
+    }
+    else if(NGrafica == 2)
+    {
+        VariacionColor = 'Reds';       
+    }
+    else
+    {
+        VariacionColor = 'Hot';
+    }
+
 	var Puntos_Z = new Array();
 
 	LimitX1 = Proyecciones[ProyeccionActiva].XCentro - Proyecciones[ProyeccionActiva].FhiRadio;
@@ -178,7 +207,8 @@ function Graficando_Hill()
 
 	var data = [{
 		z: Puntos_Z,
-		type: 'surface'
+		type: 'surface',
+		colorscale: VariacionColor          
 	}];
 
 	var layout = {
@@ -191,7 +221,7 @@ function Graficando_Hill()
 		}
 	};
 
-	Plotly.newPlot('myDiv', data, layout);
+	Plotly.newPlot('Montaña'+NGrafica, data, layout);
 }
 
 

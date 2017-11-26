@@ -74,7 +74,18 @@ $( document ).ready(function()
 
   $('#graficamontaña').click(function(event)
   {
-    Graficando_Hill();
+        if(Proyecciones[0].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[0].XPoint,Proyecciones[0].YPoint,Proyecciones[0].XSigma,Proyecciones[0].YSigma,Proyecciones[0].r,Proyecciones[0].Puntos_X,Proyecciones[0].Puntos_Y, Proyecciones[0].FhiRadio, Proyecciones[0].PhiRadio,1);
+        }
+        if(Proyecciones[1].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[1].XPoint,Proyecciones[1].YPoint,Proyecciones[1].XSigma,Proyecciones[1].YSigma,Proyecciones[1].r,Proyecciones[1].Puntos_X,Proyecciones[1].Puntos_Y, Proyecciones[1].FhiRadio, Proyecciones[1].PhiRadio,2);
+        }
+        if(Proyecciones[2].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[2].XPoint,Proyecciones[2].YPoint,Proyecciones[2].XSigma,Proyecciones[2].YSigma,Proyecciones[2].r,Proyecciones[2].Puntos_X,Proyecciones[2].Puntos_Y, Proyecciones[2].FhiRadio, Proyecciones[2].PhiRadio,3);
+        }
   });
 
 
