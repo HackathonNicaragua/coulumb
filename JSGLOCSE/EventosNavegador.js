@@ -109,6 +109,20 @@ $( document ).ready(function()
   });
 
 
+  $('#switchglobal').click(function (event){
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      OcultarMostrar_CentrosDeCargaEventuales(2,null,Mapa);
+      OcultarMostrar_Elipses(2,null,Mapa);
+      OcultarMostrar_Cargas(2,null,Mapa);
+      $(this).toggleClass('off');
+    }else{
+      
+
+    }
+  });
+
+
   $('#switchcarga').click(function (event)
   {
 
