@@ -13,9 +13,8 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 	$("#GraficaH").empty();	
 	$("#GraficaI").empty();	
 	$("#GraficaJ").empty();	
-	$("#myChartTOTAL").empty();	
 	
-	Consumidores(Proyecciones, ProyeccionActual);
+	Consumidores(Proyecciones, ProyeccionActiva);
 }
 
 function Consumidores(Proyecciones, ProyeccionActiva)
@@ -26,11 +25,12 @@ function Consumidores(Proyecciones, ProyeccionActiva)
     for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
         ArreglosGrafica.push(Graficando_Consumidores(Proyecciones, ProyeccionActiva, J));
     }
+
 }
 
-function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
+function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
-	var ctx = document.getElementById('Grafica' + (Alfabeto[J]).toString()).getContext('2d');
+	var ctx = document.getElementById('Grafica' + (letras[J]).toString()).getContext('2d');
     var Grafica = {
         type: 'roundedBar',
         data:
@@ -68,6 +68,7 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
                     ],
                     borderColor:
                     [
+                    //Mismos colores anteriores
                         '#626EEF',
                         '#FF5757',
                         '#4BC0C0',
@@ -150,3 +151,29 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
     var chart = new Chart(ctx, Grafica);
     return chart;
 }
+
+function Graficando_Hill()
+{
+	var Puntos_Z = new Array();
+
+	LimitX1 = Proyecciones[ProyeccionActiva].XCentro - Proyecciones[ProyeccionActiva].FhiRadio;
+	LimitX2 = Proyecciones[ProyeccionActiva].XCentro + Proyecciones[ProyeccionActiva].FhiRadio;
+
+	LimitY1 = Proyecciones[ProyeccionActiva].YCentro - Proyecciones[ProyeccionActiva].PhiRadio;
+	LimitY2 = Proyecciones[ProyeccionActiva].YCentro + Proyecciones[ProyeccionActiva].PhiRadio;
+
+	for (var I = LimitX1; I <= LimitX2; I++) 
+	{
+		Auxiliar = [];
+
+		for (J = LimitY1; J <= LimitY2 - 1; J++)
+		{
+			Auxiliar.push((((1) / (2 * (Math.PI) * (Proyecciones[ProyeccionActiva].XSigma) * (Proyecciones[ProyeccionActiva].YSigma) * (Math.sqrt(1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2)))))) * (Math.pow((Math.E), (((-1 / (2 * (1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2))))) * (((Math.pow((I - Proyecciones[ProyeccionActiva].XCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2))) - (((2 * Proyecciones[ProyeccionActiva].R) * (I - Proyecciones[ProyeccionActiva].XCentro) * (J - Proyecciones[ProyeccionActiva].YCentro)) / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma)) + ((Math.pow((J - Proyecciones[ArreglosGrafica].YCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2))))))))));
+		}
+		
+		Puntos_Z.push(Auxiliar);
+	}
+}
+
+
+
