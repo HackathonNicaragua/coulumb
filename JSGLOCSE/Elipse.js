@@ -18,9 +18,7 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I]);
 		}
 
-		Proyecciones[ProyeccionActiva].CentrosEventuales[I].X= XTemp/Suma;  
-
-		Proyecciones[ProyeccionActiva].CentrosEventuales[I].Y= YTemp/Suma;  
+		Proyecciones[ProyeccionActiva].CentrosEventuales.push({X :XTemp / Suma ,Y : YTemp/Suma }) ;  
 	}
 
 	Proyecciones[ProyeccionActiva].XCentro = 0;
@@ -102,7 +100,7 @@ function Coeficiente_Correlacion()
 
 function Angulo_Eje_Simetria()
 {
-	Proyecciones[ProyeccionActiva].Angulo = ( (0.5) * (Math.atan( ( (2*Proyecciones[ProyeccionActiva].XYCorrelacion) / (XDispersion - YDispersion) ) ) ) );
+	Proyecciones[ProyeccionActiva].Angulo = ( (0.5) * (Math.atan( ( (2*Proyecciones[ProyeccionActiva].XYCorrelacion) / (Proyecciones[ProyeccionActiva].XDispersion - Proyecciones[ProyeccionActiva].YDispersion) ) ) ) );
 
 	Desviaciones_Medio_Cuadraticas();
 }
@@ -142,7 +140,8 @@ function Puntos_Elipse()
 
 	Periodo = new Array();
 
-	for (var I = Math.PI * -1; I <= Math.PI -1; I = I + 0.001)
+	var Coordenadas = [];
+	for (var I = Math.PI * -1; I <= Math.PI; I = I + 0.01)
 	{
 		Periodo.push(I);	
 	}
@@ -175,16 +174,7 @@ function Puntos_Elipse()
         });
 
 */
-	for (var I = 0; I <= 23; I++) 
-	{
-		var marker = new google.maps.Marker({
-          position: myLatlng,
-          title: letras[numpin]+"1",
-          draggable: false,
-          icon: image.url,
-          map:Mapa
-        });
-	}
+	
 
 	var Poligono = new google.maps.Polygon({
           paths: Coordenadas,

@@ -97,10 +97,10 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 	 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
 	 	  {
 	            // Poner aqui metodo para poner el mapa
-	            if(numpin<10){
+	            if(Proyecciones[ProyeccionActiva].Contador < 10)
+	            {
 	              AnadirMarcador();
-	              numpin++;
-	            }
+	              Proyecciones[ProyeccionActiva].Contador++;	            }
 	      });
 
 	}
@@ -119,20 +119,23 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         });
 
         var image = {
-          url: url1[numpin]
+          url: url1[Proyecciones[ProyeccionActiva].Contador]
         };
 
         var marker = new google.maps.Marker({
           position: myLatlng,
-          title: letras[numpin]+"1",
+          title: letras[Proyecciones[ProyeccionActiva].Contador]+"1",
           draggable: true,
           icon: image.url,
           map:Mapa,
           animation: google.maps.Animation.DROP
         });
 
-        google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(marker, 'click', function() 
+        {
+          OperacionesTabla(3,Indice(marker.title).Horas);
           $('#ContenedorEmergente').show(500);
+          document.getElementById('ctitulo').innerHTML = 'Consumidor '+ marker.title;
           document.getElementById('ContenedorEmergente').style.left = posicionx + 'px';
           document.getElementById('ContenedorEmergente').style.top = posiciony + 'px';
           document.getElementById('clatitud').value = marker.getPosition().lat();
@@ -151,10 +154,38 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 
 
         });
-        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : [], X:posicionx, Y:posiciony, Categoria: 1});
+        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : OperacionesTabla(2, null) , X:posicionx, Y:posiciony, Categoria: 1});
  }
 
- function Indice(title){
+
+function OperacionesTabla(Caso, Arreglo) 
+{
+    var Potencias = []
+    /*Lectura de las potencias */
+    if (Caso == 1) {
+        for (var I = 0; I <= 23; I++) {
+            Potencias[I] = document.getElementById('tablapotencias').rows[1].cells[I].innerHTML;
+        }
+        return Potencias;
+    }
+    /*Reinicia las potencias */
+    else if (Caso == 2) {
+        for (var I = 0; I <= 23; I++) {
+            Potencias.push('0');
+        }
+        return Potencias;
+    }
+    else {
+        /*Actualiza las tablas de potencia */
+        for (var I = 0; I <= 23; I++) {
+
+            document.getElementById('tablapotencias').rows[1].cells[I].innerHTML = Arreglo[I];
+        }
+    }
+}
+
+ function Indice(title)
+ {
    var referencia;
    for (var i = 0; i < Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; i++)
    {
@@ -167,6 +198,19 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
    return referencia;
  }
 
+
+// Potencias aleatorias
+
+function PotenciasAleatorias()
+{
+	for (var I = 0; I < Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++) 
+	{
+		for (var J = 0; J <= 23; J++) 
+		{
+			Proyecciones[ProyeccionActiva].MarcadoresCollecion[I].Horas[J] = Math.floor((Math.random() * 100) + 1);
+		}
+	}
+}
 
 // Metodos para hacer operaciones de conversiones de coordenada
 
@@ -189,3 +233,4 @@ function PuntoALatLng(Punto)
   var CoordenadaMundo = new google.maps.Point(Punto.x / Escala + IzquierdaInferior.x, Punto.y / Escala + TopeDerecha.y);
   return Mapa.getProjection().fromPointToLatLng(CoordenadaMundo);
 }
+
