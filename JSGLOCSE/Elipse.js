@@ -162,6 +162,46 @@ function Puntos_Elipse()
 		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].Puntos_Y[I] + Proyecciones[ProyeccionActiva].YCentro;
 	}
 
+
+	for (var I = 0; I <= Proyecciones[ProyeccionActiva].Puntos_X.length - 1; I++) 
+	{
+		Coordenadas.push(PuntoALatLng({x: Proyecciones[ProyeccionActiva].Puntos_X[I], y:Proyecciones[ProyeccionActiva].Puntos_Y[I]}));	
+	}
+
+/*
+	 var Coordenadas = PuntoALatLng({
+          x: Proyecciones[ProyeccionActiva].Puntos_X,
+          y: Proyecciones[ProyeccionActiva].Puntos_Y
+        });
+
+*/
+	for (var I = 0; I <= 23; I++) 
+	{
+		var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: letras[numpin]+"1",
+          draggable: false,
+          icon: image.url,
+          map:Mapa
+        });
+	}
+
+	var Poligono = new google.maps.Polygon({
+          paths: Coordenadas,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 1,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+        Poligono.setMap(Mapa);
+
+
+}
+
+function Coordenadas()
+{
+
 }
 
 
