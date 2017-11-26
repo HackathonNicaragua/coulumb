@@ -1,6 +1,6 @@
 var ArreglosGrafica = new Array();
 
-function Datos_Graficas(Proyecciones, ProyeccionActiva)
+function Datos_Graficas()
 {
 	//Nombre temporal de canvas, asignacion de nombre, una vez esté terminada la interfaz
 	$("#GraficaA").empty();	
@@ -13,8 +13,6 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 	$("#GraficaH").empty();	
 	$("#GraficaI").empty();	
 	$("#GraficaJ").empty();	
-
-	Medidas_Variacion();
 	
 	Consumidores(Proyecciones, ProyeccionActiva);
 }
@@ -45,6 +43,21 @@ function Consumidores(Proyecciones, ProyeccionActiva)
 
 function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
+	Chart.plugins.register
+        ({
+            beforeDraw: function (chartInstance) {
+                var ctx = chartInstance.chart.ctx;
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+            }
+        });
+
+    Chart.defaults.global.defaultFontFamily = "Gotham Rounded A";
+    Chart.defaults.roundedBar = Chart.helpers.clone(Chart.defaults.bar);
+    Chart.controllers.roundedBar = Chart.controllers.bar.extend
+        ({
+            dataElementType: Chart.elements.RoundedTopRectangle
+        });
 	var ctx = document.getElementById('Grafica' + (letras[J]).toString()).getContext('2d');
     var Grafica = {
         type: 'roundedBar',

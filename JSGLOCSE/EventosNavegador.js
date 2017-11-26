@@ -91,7 +91,7 @@ $( document ).ready(function()
 
   $('#graficaconsumidores').click(function(event)
   {
-    Datos_Graficas(Proyecciones, ProyeccionActiva); 
+    Datos_Graficas(); 
   });
 
 $('#sb_googlemaps').click(function(event)
