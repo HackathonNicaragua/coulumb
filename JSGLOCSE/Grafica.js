@@ -13,7 +13,6 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 	$("#GraficaH").empty();	
 	$("#GraficaI").empty();	
 	$("#GraficaJ").empty();	
-	$("#myChartTOTAL").empty();	
 	
 	Consumidores(Proyecciones, ProyeccionActual);
 }
@@ -26,11 +25,12 @@ function Consumidores(Proyecciones, ProyeccionActiva)
     for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
         ArreglosGrafica.push(Graficando_Consumidores(Proyecciones, ProyeccionActiva, J));
     }
+
 }
 
-function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
+function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
-	var ctx = document.getElementById('Grafica' + (Alfabeto[J]).toString()).getContext('2d');
+	var ctx = document.getElementById('Grafica' + (letras[J]).toString()).getContext('2d');
     var Grafica = {
         type: 'roundedBar',
         data:
@@ -68,6 +68,7 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva)
                     ],
                     borderColor:
                     [
+                    //Mismos colores anteriores
                         '#626EEF',
                         '#FF5757',
                         '#4BC0C0',
