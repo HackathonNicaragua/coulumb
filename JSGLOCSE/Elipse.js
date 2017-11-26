@@ -190,10 +190,16 @@ function Puntos_Elipse()
           fillOpacity: 0.35,
           map: Mapa
         });
+<<<<<<< HEAD
 
 	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
 }
 
+=======
+        Poligono.setMap(Mapa);
+
+}
+>>>>>>> c3000a84c80ffe77fece56c01945d3673991ea5b
 
 
 function Medidas_Variacion()
@@ -211,4 +217,129 @@ function Medidas_Variacion()
 
 		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Menor = Math.min.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
 	}
+}
+
+function URLCentroEventual(CentrosEventual)
+{
+    switch (CentroEventual) {
+    case "1":
+        URLImagen = "https://k61.kn3.net/D/9/F/2/D/2/EBD.png";
+        break;
+
+    case "2":
+    	URLImagen = "https://k61.kn3.net/A/7/7/6/F/2/886.png";
+    	break;
+
+    case "3":
+    	URLImagen = "https://k60.kn3.net/A/A/0/2/F/5/3F4.png";
+    	break;
+
+    case "4":
+    	URLImagen = "https://k61.kn3.net/6/9/5/C/9/9/52E.png";
+    	break;
+
+    case "5":
+    	URLImagen = "https://k61.kn3.net/A/5/5/0/4/A/7D7.png";
+    	break;	
+
+    case "6":
+    	URLImagen = "https://k61.kn3.net/A/E/B/0/7/C/D5A.png";
+    	break;
+
+    case "7":
+    	URLImagen = "https://k61.kn3.net/5/3/A/C/0/C/4F0.png";
+    	break;
+
+    case "8":
+    	URLImagen = "https://k60.kn3.net/A/3/B/5/E/1/CB7.png";
+    	break;
+
+    case "9":
+    	URLImagen = "https://k60.kn3.net/D/E/6/3/E/5/B4D.png";
+    	break;
+
+    case "10":
+    	URLImagen = "https://k61.kn3.net/D/4/5/B/B/B/326.png";
+    	break;
+
+    case "11":
+    	URLImagen = "https://k61.kn3.net/8/A/7/2/F/6/279.png";
+    	break;
+
+    case "12":
+    	URLImagen = "https://k60.kn3.net/5/C/1/E/2/C/D41.png";
+    	break;
+
+    case "13":
+    	URLImagen = "https://k61.kn3.net/2/8/7/D/F/8/F6D.png";
+    	break;
+
+    case "14":
+    	URLImagen = "https://k61.kn3.net/8/E/3/6/8/C/D11.png";
+    	break;
+
+    case "15":
+    	URLImagen = "https://k61.kn3.net/9/2/F/D/1/D/B9B.png";
+    	break;
+    
+    case "16":
+    	URLImagen = "https://k61.kn3.net/E/4/5/9/D/1/0EF.png";
+    	break;
+
+    case "17":
+    	URLImagen = "https://k61.kn3.net/2/1/3/4/5/A/214.png";
+    	break;
+
+    case "18":
+    	URLImagen = "https://k61.kn3.net/2/9/7/8/E/7/DF7.png";
+    	break;
+
+    case "19":
+    	URLImagen = "https://k60.kn3.net/8/F/9/F/9/8/74D.png";
+    	break;
+
+    case "20":
+    	URLImagen = "https://k61.kn3.net/C/B/D/6/C/D/A3D.png";
+    	break;
+
+    case "21":
+    	URLImagen = "https://k61.kn3.net/1/9/F/7/A/7/24E.png";
+    	break;
+
+    case "22":
+    	URLImagen = "https://k61.kn3.net/4/D/F/7/B/4/DD1.png";
+    	break;
+
+    case "23":
+    	URLImagen = "https://k60.kn3.net/F/9/5/F/C/6/B8B.png";
+    	break;
+
+    case "24":
+    	URLImagen = "https://k60.kn3.net/F/9/5/F/C/6/B8B.png";
+    	break;
+    }
+
+    return URLImagen;
+}
+
+function URLCentroElipse(Centro) 
+{
+    Centro = Centro.toString();
+    switch (Centro) {
+        case "0":
+            URLImagen = "https://k60.kn3.net/3/2/E/E/D/7/B0E.png";
+            break;
+        case "1":
+            URLImagen = "https://k60.kn3.net/B/4/6/8/5/2/809.png";
+            break;
+
+        case "2":
+            URLImagen = "https://k60.kn3.net/6/5/6/8/B/1/D23.png";
+            break;
+
+        case "3":
+            URLImagen = "https://k60.kn3.net/E/6/9/7/6/1/E3A.png";
+            break;
+    }
+    return URLImagen;
 }
