@@ -151,3 +151,8 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
     var chart = new Chart(ctx, Grafica);
     return chart;
 }
+
+function Graficando_Hill()
+{
+	
+}
