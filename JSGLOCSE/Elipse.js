@@ -131,3 +131,33 @@ function Radios_Elipse_Sistema()
 
 	Proyecciones[ProyeccionActiva].PhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].PhiExactitud); 
 }
+
+function Puntos_Elipse()
+{
+	Proyecciones[ProyeccionActiva].Puntos_X = new Array();
+
+	Proyecciones[ProyeccionActiva].Puntos_Y = new Array();
+
+	Periodo = new Array();
+
+	for (var I = Math.PI * -1; I <= Math.PI -1; I = I + 0.001)
+	{
+		Periodo.push(I);	
+	}
+
+	for (var I = 0; I <= Periodo.length; I++) 
+	{
+		Proyecciones[ProyeccionActiva].Puntos_X[I] = Proyecciones[ProyeccionActiva].FhiRadio * Math.sin(Periodo[I]);
+		
+		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].PhiRadio * Math.cos(Periodo[I]);
+
+		Proyecciones[ProyeccionActiva].Puntos_X[I] = ( Proyecciones[ProyeccionActiva].Puntos_X[I] * Math.cos(Proyecciones[ProyeccionActiva].Angulo) ) - ( Proyecciones[ProyeccionActiva].Puntos_Y[I] * Math.sin(Proyecciones[ProyeccionActiva].Angulo) );
+
+		Proyecciones[ProyeccionActiva].Puntos_Y[I] = ( Proyecciones[ProyeccionActiva].Puntos_Y[I] * Math.cos(Proyecciones[ProyeccionActiva].Angulo) ) - ( Proyecciones[ProyeccionActiva].Puntos_X[I] * Math.sin(Proyecciones[ProyeccionActiva].Angulo) );
+	 
+		Proyecciones[ProyeccionActiva].Puntos_X[I] = Proyecciones[ProyeccionActiva].Puntos_X[I] + Proyecciones[ProyeccionActiva].XCentro;
+
+		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].Puntos_Y[I] + Proyecciones[ProyeccionActiva].YCentro;
+	}
+
+}
