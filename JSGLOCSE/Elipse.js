@@ -1,6 +1,24 @@
 function Centros_Eventuales(Parametro,ProyeccionActiva)
-			{
 
+{
+	if(Proyecciones[ProyeccionActiva].ElipseDibujada)
+	{
+		OcultarCentrosEventuales(1 , null);
+	}
+
+	Proyecciones[ProyeccionActiva].CentrosEventuales = new Array();
+	
+	if(Proyecciones[ProyeccionActiva].Elipse != null)
+	{
+		Proyecciones[ProyeccionActiva].Elipse.setMap(null);	 
+	}
+
+
+	if(Proyecciones[ProyeccionActiva].CentroElipse != null)
+	{
+		Proyecciones[ProyeccionActiva].CentroElipse.setMap(null);	 	
+	}
+			
 	for (var I = 0; I <= 23; I++)
 	{
 
@@ -17,8 +35,17 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 		
 			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I]);
 		}
+		 var marker = new google.maps.Marker(
+		 {
+          position: PuntoALatLng({x:XTemp / Suma,y:YTemp/Suma}),
+          title: (I+1).toString(),
+          draggable: false,
+          icon: URLCentroEventual((I+1).toString()),
+          map:Mapa,
+          animation: google.maps.Animation.DROP
+        });
 
-		Proyecciones[ProyeccionActiva].CentrosEventuales.push({X :XTemp / Suma ,Y : YTemp/Suma }) ;  
+		Proyecciones[ProyeccionActiva].CentrosEventuales.push({X :XTemp / Suma ,Y : YTemp/Suma , Marcador : marker }) ;  
 	}
 
 	Proyecciones[ProyeccionActiva].XCentro = 0;
@@ -34,6 +61,19 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	//Centro de la Elipse
 	Proyecciones[ProyeccionActiva].XCentro = Proyecciones[ProyeccionActiva].XCentro / 24; 
 	Proyecciones[ProyeccionActiva].YCentro = Proyecciones[ProyeccionActiva].YCentro / 24;
+
+
+
+	Proyecciones[ProyeccionActiva].CentroElipse = new google.maps.Marker(
+		 {
+          position: PuntoALatLng({x:Proyecciones[ProyeccionActiva].XCentro,y:Proyecciones[ProyeccionActiva].YCentro}),
+          title: (I+1).toString(),
+          draggable: false,
+          icon: URLCentroElipse(ProyeccionActiva),
+          map:Mapa,
+          animation: google.maps.Animation.DROP
+        });
+
 
 	Dispersion();
 	
@@ -176,15 +216,20 @@ function Puntos_Elipse()
 */
 	
 
-	var Poligono = new google.maps.Polygon({
+	Proyecciones[ProyeccionActiva].Elipse = new google.maps.Polygon({
           paths: Coordenadas,
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 1,
           fillColor: '#FF0000',
+          map:Mapa,
           fillOpacity: 0.35
         });
-        Poligono.setMap(Mapa);
+
+
+
+	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
+       
 
 }
 
@@ -208,7 +253,8 @@ function Medidas_Variacion()
 
 function URLCentroEventual(CentrosEventual)
 {
-    switch (CentroEventual) {
+	var URLImagen;
+    switch (CentrosEventual) {
     case "1":
         URLImagen = "https://k61.kn3.net/D/9/F/2/D/2/EBD.png";
         break;
@@ -329,4 +375,25 @@ function URLCentroElipse(Centro)
             break;
     }
     return URLImagen;
-} 
+
+}
+
+
+function OcultarCentrosEventuales(Parametro , Mapa)
+{
+   if(Parametro == 1)
+   {
+   		for (var i = 0; i < 24; i++) 
+   		{
+   			Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(Mapa);
+   			
+   		} 
+   }
+   else
+   {
+
+   }
+}
+
+ 
+

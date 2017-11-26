@@ -69,7 +69,7 @@ $( document ).ready(function()
   $('#Procesar').click(function(event)
   {
   		PotenciasAleatorias();
-  		Centros_Eventuales(1,ProyeccionActiva)
+  		Centros_Eventuales(1,ProyeccionActiva);
   });
 
   $('#switchcarga').click(function (event) {
@@ -87,16 +87,54 @@ $( document ).ready(function()
     }
   });
 
+  $('#graficamontaña').click(function(event)
+  {
+        if(Proyecciones[0].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[0].XPoint,Proyecciones[0].YPoint,Proyecciones[0].XSigma,Proyecciones[0].YSigma,Proyecciones[0].r,Proyecciones[0].Puntos_X,Proyecciones[0].Puntos_Y, Proyecciones[0].FhiRadio, Proyecciones[0].PhiRadio,1);
+        }
+        if(Proyecciones[1].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[1].XPoint,Proyecciones[1].YPoint,Proyecciones[1].XSigma,Proyecciones[1].YSigma,Proyecciones[1].r,Proyecciones[1].Puntos_X,Proyecciones[1].Puntos_Y, Proyecciones[1].FhiRadio, Proyecciones[1].PhiRadio,2);
+        }
+        if(Proyecciones[2].ElipseDibujada)
+        {
+           Graficando_Hill(Proyecciones[2].XPoint,Proyecciones[2].YPoint,Proyecciones[2].XSigma,Proyecciones[2].YSigma,Proyecciones[2].r,Proyecciones[2].Puntos_X,Proyecciones[2].Puntos_Y, Proyecciones[2].FhiRadio, Proyecciones[2].PhiRadio,3);
+        }
+  });
 
+  $('#graficaconsumidores').click(function(event)
+  {
+    Datos_Graficas(Proyecciones, ProyeccionActiva);
+  });
 
+$('#sb_googlemaps').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'block';
+    document.getElementById('containergraficas').style.display = 'none';
+    document.getElementById('containerreportes').style.display = 'none';
+  });
 
+  $('#sb_graficas').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'none';
+    document.getElementById('containergraficas').style.display = 'block';
+    document.getElementById('containerreportes').style.display = 'none';
+  });
+
+  $('#sb_reportes').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'none';
+    document.getElementById('containergraficas').style.display = 'none';
+    document.getElementById('containerreportes').style.display = 'block';
+  });
 
 
   //Usuarios (6-10)
 	MarcadoresCollecion.push({Horas:[], X:0, Y:0,  Mayor:0, Menor:0, Promedio:0});
 
-	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false});
-	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false});
-	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false,CentroElipse:null});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false,CentroElipse:null});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false,CentroElipse:null});
 
 });

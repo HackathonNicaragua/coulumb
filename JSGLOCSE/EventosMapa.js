@@ -72,7 +72,68 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         }
     });
 
- }
+	
+
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('BusquedaLugar');
+        var searchBox = new google.maps.places.SearchBox(input);        
+
+        // Bias the SearchBox results towards current map's viewport.
+        Mapa.addListener('bounds_changed', function() {
+          searchBox.setBounds(Mapa.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: Mapa,
+              animation: google.maps.Animation.DROP,
+              icon: 'https://k60.kn3.net/B/D/7/7/8/4/8FC.png',
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          Mapa.fitBounds(bounds);
+        });
+      }
 
 
 
@@ -250,8 +311,8 @@ function PotenciasAleatorias()
 //Convierte un objeto de latitudlongitud a coordenada x e y
 function LatLngAPunto(latLngPunto)
 {
-  var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getNorthEast());
-  var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getSouthWest());
+  var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Rectangulo.getBounds().getNorthEast());
+  var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Rectangulo.getBounds().getSouthWest());
   var Escala = Math.pow(2, Mapa.getZoom());
   var CoordenadaMundo = Mapa.getProjection().fromLatLngToPoint(latLngPunto);
   return new google.maps.Point((CoordenadaMundo.x - IzquierdaInferior.x) * Escala, (CoordenadaMundo.y - TopeDerecha.y) * Escala);
@@ -260,8 +321,8 @@ function LatLngAPunto(latLngPunto)
 // Convierte una coordenada x e y a un punto en el mapa
 function PuntoALatLng(Punto)
 {
-  var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getNorthEast());
-  var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getSouthWest());
+  var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Rectangulo.getBounds().getNorthEast());
+  var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Rectangulo.getBounds().getSouthWest());
   var Escala = Math.pow(2, Mapa.getZoom());
   var CoordenadaMundo = new google.maps.Point(Punto.x / Escala + IzquierdaInferior.x, Punto.y / Escala + TopeDerecha.y);
   return Mapa.getProjection().fromPointToLatLng(CoordenadaMundo);

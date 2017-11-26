@@ -22,6 +22,19 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 function Consumidores(Proyecciones, ProyeccionActiva)
 {
 	var Horas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	
+	if (ArreglosGrafica.length > 0) 
+	{
+        ArreglosGrafica.forEach(function (GraficaConsumidor) 
+        {
+        	if (GraficaConsumidor != null) 
+        	{
+                GraficaConsumidor.destroy();
+            }
+        });
+    }
+
+	
 
 	 //Realizacion de Graficos de Barras por Consumidor
     for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; J++) {
@@ -154,8 +167,22 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
     return chart;
 }
 
-function Graficando_Hill()
+function Graficando_Hill(XPoint, YPoint, XSigma, YSigma, r, PUNTOS_X, PUNTOS_Y, RadioX, RadioY,NGrafica)
 {
+	var VariacionColor;
+    if(NGrafica == 1)
+    {
+        VariacionColor = 'Bluered';
+    }
+    else if(NGrafica == 2)
+    {
+        VariacionColor = 'Reds';       
+    }
+    else
+    {
+        VariacionColor = 'Hot';
+    }
+
 	var Puntos_Z = new Array();
 
 	LimitX1 = Proyecciones[ProyeccionActiva].XCentro - Proyecciones[ProyeccionActiva].FhiRadio;
@@ -170,11 +197,29 @@ function Graficando_Hill()
 
 		for (J = LimitY1; J <= LimitY2 - 1; J++)
 		{
-			Auxiliar.push((((1) / (2 * (Math.PI) * (Proyecciones[ProyeccionActiva].XSigma) * (Proyecciones[ProyeccionActiva].YSigma) * (Math.sqrt(1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2)))))) * (Math.pow((Math.E), (((-1 / (2 * (1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2))))) * (((Math.pow((I - Proyecciones[ProyeccionActiva].XCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2))) - (((2 * Proyecciones[ProyeccionActiva].R) * (I - Proyecciones[ProyeccionActiva].XCentro) * (J - Proyecciones[ProyeccionActiva].YCentro)) / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma)) + ((Math.pow((J - Proyecciones[ArreglosGrafica].YCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2))))))))));
+			Auxiliar.push((((1) / (2 * (Math.PI) * (Proyecciones[ProyeccionActiva].XSigma) * (Proyecciones[ProyeccionActiva].YSigma) * (Math.sqrt(1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2)))))) * (Math.pow((Math.E), (((-1 / (2 * (1 - (Math.pow(Proyecciones[ProyeccionActiva].R, 2))))) * (((Math.pow((I - Proyecciones[ProyeccionActiva].XCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2))) - (((2 * Proyecciones[ProyeccionActiva].R) * (I - Proyecciones[ProyeccionActiva].XCentro) * (J - Proyecciones[ProyeccionActiva].YCentro)) / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma)) + ((Math.pow((J - Proyecciones[ProyeccionActiva].YCentro), 2)) / (Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2))))))))));
 		}
 
 		Puntos_Z.push(Auxiliar);
 	}
+
+	var data = [{
+		z: Puntos_Z,
+		type: 'surface',
+		colorscale: VariacionColor          
+	}];
+
+	var layout = {
+
+		margin: {
+			l:20, 
+			r:20, 
+			b:20,
+			t:20,
+		}
+	};
+
+	Plotly.newPlot('Montaña'+NGrafica, data, layout);
 }
 
 
