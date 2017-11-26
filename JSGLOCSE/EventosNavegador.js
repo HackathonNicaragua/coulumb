@@ -47,6 +47,10 @@ $( document ).ready(function()
 
   })
 
+  $('#ContenedorEmergente').mouseleave(function (event) {
+    $('#ContenedorEmergente').hide(500);
+  });
+
   $('#Cat1CentroEventual').click(function (event )
   {
       Indice(referencia.title).Categoria = 1;
@@ -72,6 +76,7 @@ $( document ).ready(function()
   {
     Graficando_Hill();
   }
+
 
 
   //Usuarios (6-10)
