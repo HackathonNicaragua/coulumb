@@ -81,7 +81,13 @@ $( document ).ready(function()
     if(this.className == 'switch on' ){
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
+<<<<<<< HEAD
     }else{
+=======
+    }
+    else
+    {
+>>>>>>> da0e28fc4acaa7788a7498aca2abf29dcedb897a
       MuestraOcultaC(null);
     }
   });
@@ -103,6 +109,24 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
+<<<<<<< HEAD
+=======
+
+    }
+  });
+
+
+  $('#switchglobal').click(function (event){
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      OcultarMostrar_CentrosDeCargaEventuales(2,null,Mapa);
+      OcultarMostrar_Elipses(2,null,Mapa);
+      OcultarMostrar_Cargas(2,null,Mapa);
+      $(this).toggleClass('off');
+    }else{
+      
+
+>>>>>>> da0e28fc4acaa7788a7498aca2abf29dcedb897a
     }
   });
 
@@ -177,7 +201,7 @@ $('#sb_googlemaps').click(function(event)
     document.getElementById('centrosproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].CentrosEventuales.length).toString() + " / 24";
     document.getElementById('Radiox').innerHTML = ((Proyecciones[ProyeccionActiva].XCentro).toFixed(2)).toString();
     document.getElementById('Radioy').innerHTML = ((Proyecciones[ProyeccionActiva].YCentro).toFixed(2)).toString();
-
+    ActualizarTabla();
   });
 
 
