@@ -30,7 +30,7 @@ function Consumidores(Proyecciones, ProyeccionActiva)
 
 function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 {
-	var ctx = document.getElementById('Grafica' + (Alfabeto[J]).toString()).getContext('2d');
+	var ctx = document.getElementById('Grafica' + (letras[J]).toString()).getContext('2d');
     var Grafica = {
         type: 'roundedBar',
         data:
