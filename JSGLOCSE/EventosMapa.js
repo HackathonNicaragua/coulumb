@@ -139,6 +139,14 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           document.getElementById('clongitud').value = marker.getPosition().lng();
           var posicion =  LatLngAPunto(marker.getPosition());
           document.getElementById('ccoordenadas').value = posicion.x + ", " + posicion.y;
+
+          if(Indice(marker.title).Categoria == 1 ){
+            document.getElementById('Cat1CentroEventual').checked = true;
+          }else if(Indice(marker.title).Categoria == 2 ){
+            document.getElementById('Cat2CentroEventual').checked = true;
+          }else if(Indice(marker.title).Categoria == 3 ){
+            document.getElementById('Cat3CentroEventual').checked = true;
+          }
           referencia = marker;
 
 
