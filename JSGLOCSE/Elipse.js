@@ -1,3 +1,6 @@
+//var Color = ['#FF0000','#64DD17','#D500F9'];
+var color = ['#FF0000','#33FF00','#D500F9'];
+
 function Centros_Eventuales(Parametro,ProyeccionActiva)
 
 {
@@ -7,18 +10,18 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	}
 
 	Proyecciones[ProyeccionActiva].CentrosEventuales = new Array();
-	
+
 	if(Proyecciones[ProyeccionActiva].Elipse != null)
 	{
-		Proyecciones[ProyeccionActiva].Elipse.setMap(null);	 
+		Proyecciones[ProyeccionActiva].Elipse.setMap(null);
 	}
 
 
 	if(Proyecciones[ProyeccionActiva].CentroElipse != null)
 	{
-		Proyecciones[ProyeccionActiva].CentroElipse.setMap(null);	 	
+		Proyecciones[ProyeccionActiva].CentroElipse.setMap(null);
 	}
-			
+
 	for (var I = 0; I <= 23; I++)
 	{
 
@@ -26,13 +29,13 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 		YTemp = 0;
 		Suma = 0;
 
-		for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length)-1; J++) 
+		for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length)-1; J++)
 		{
 
 			XTemp = XTemp + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].X);
 
 			YTemp = YTemp + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Y);
-		
+
 			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I]);
 		}
 		 var marker = new google.maps.Marker(
@@ -45,7 +48,7 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
           animation: google.maps.Animation.DROP
         });
 
-		Proyecciones[ProyeccionActiva].CentrosEventuales.push({X :XTemp / Suma ,Y : YTemp/Suma , Marcador : marker }) ;  
+		Proyecciones[ProyeccionActiva].CentrosEventuales.push({X :XTemp / Suma ,Y : YTemp/Suma , Marcador : marker }) ;
 	}
 
 	Proyecciones[ProyeccionActiva].XCentro = 0;
@@ -59,7 +62,7 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	}
 
 	//Centro de la Elipse
-	Proyecciones[ProyeccionActiva].XCentro = Proyecciones[ProyeccionActiva].XCentro / 24; 
+	Proyecciones[ProyeccionActiva].XCentro = Proyecciones[ProyeccionActiva].XCentro / 24;
 	Proyecciones[ProyeccionActiva].YCentro = Proyecciones[ProyeccionActiva].YCentro / 24;
 
 
@@ -76,14 +79,14 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 
 
 	Dispersion();
-	
+
 }
 
 function Dispersion()
 {
 	Proyecciones[ProyeccionActiva].XDispersion = 0;
 	Proyecciones[ProyeccionActiva].YDispersion = 0;
-	
+
 	for (var I = 0; I <= 23; I++)
 	{
 
@@ -112,7 +115,7 @@ function Exactitud_Variables_Aleatorias()
 {
 	Proyecciones[ProyeccionActiva].XExactitud = (1 / (Proyecciones[ProyeccionActiva].XSigma * Math.sqrt(2) ) );
 
-	Proyecciones[ProyeccionActiva].YExactitud = (1 / (Proyecciones[ProyeccionActiva].YSigma * Math.sqrt(2) ) );	
+	Proyecciones[ProyeccionActiva].YExactitud = (1 / (Proyecciones[ProyeccionActiva].YSigma * Math.sqrt(2) ) );
 
 	Momento_Correlacion();
 }
@@ -124,7 +127,7 @@ function Momento_Correlacion()
 	for (var I = 0; I <= 23; I++)
 	{
 		Proyecciones[ProyeccionActiva].XYCorrelacion = Proyecciones[ProyeccionActiva].XYCorrelacion + ( (Proyecciones[ProyeccionActiva].CentrosEventuales[I].X - Proyecciones[ProyeccionActiva].XCentro) * (Proyecciones[ProyeccionActiva].CentrosEventuales[I].Y - Proyecciones[ProyeccionActiva].YCentro) );
-	}		
+	}
 
 	Proyecciones[ProyeccionActiva].XYCorrelacion = (Proyecciones[ProyeccionActiva].XYCorrelacion / 23);
 
@@ -133,7 +136,7 @@ function Momento_Correlacion()
 
 function Coeficiente_Correlacion()
 {
-	Proyecciones[ProyeccionActiva].R = ( Proyecciones[ProyeccionActiva].XYCorrelacion / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma) );	
+	Proyecciones[ProyeccionActiva].R = ( Proyecciones[ProyeccionActiva].XYCorrelacion / (Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma) );
 
 	Angulo_Eje_Simetria();
 }
@@ -152,13 +155,13 @@ function Desviaciones_Medio_Cuadraticas()
 	Proyecciones[ProyeccionActiva].PhiSigma2 = ( ( Math.pow(Proyecciones[ProyeccionActiva].XSigma, 2) * Math.pow(Math.sin(Proyecciones[ProyeccionActiva].Angulo), 2) ) + ( Proyecciones[ProyeccionActiva].R * Proyecciones[ProyeccionActiva].XSigma * Proyecciones[ProyeccionActiva].YSigma * Math.sin(2*Proyecciones[ProyeccionActiva].Angulo)  ) + ( Math.pow(Proyecciones[ProyeccionActiva].YSigma, 2) * Math.pow(Math.cos(Proyecciones[ProyeccionActiva].Angulo), 2) ) );
 
 	Exactitud_Nuevo_Eje();
-}	
+}
 
 function Exactitud_Nuevo_Eje()
 {
 	Proyecciones[ProyeccionActiva].FhiExactitud = (1 / ( Math.sqrt(2) * Math.sqrt( Proyecciones[ProyeccionActiva].FhiSigma2 ) ) );
 
-	Proyecciones[ProyeccionActiva].PhiExactitud = (1 / ( Math.sqrt(2) * Math.sqrt( Proyecciones[ProyeccionActiva].PhiSigma2 ) ) ); 
+	Proyecciones[ProyeccionActiva].PhiExactitud = (1 / ( Math.sqrt(2) * Math.sqrt( Proyecciones[ProyeccionActiva].PhiSigma2 ) ) );
 
 	Radios_Elipse_Sistema();
 }
@@ -167,7 +170,7 @@ function Radios_Elipse_Sistema()
 {
 	Proyecciones[ProyeccionActiva].FhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].FhiExactitud);
 
-	Proyecciones[ProyeccionActiva].PhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].PhiExactitud); 
+	Proyecciones[ProyeccionActiva].PhiRadio = Math.sqrt(3) / (Proyecciones[ProyeccionActiva].PhiExactitud);
 
 	Puntos_Elipse();
 }
@@ -183,28 +186,28 @@ function Puntos_Elipse()
 	var Coordenadas = [];
 	for (var I = Math.PI * -1; I <= Math.PI; I = I + 0.01)
 	{
-		Periodo.push(I);	
+		Periodo.push(I);
 	}
 
-	for (var I = 0; I <= Periodo.length; I++) 
+	for (var I = 0; I <= Periodo.length; I++)
 	{
 		Proyecciones[ProyeccionActiva].Puntos_X[I] = Proyecciones[ProyeccionActiva].FhiRadio * Math.sin(Periodo[I]);
-		
+
 		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].PhiRadio * Math.cos(Periodo[I]);
 
 		Proyecciones[ProyeccionActiva].Puntos_X[I] = ( Proyecciones[ProyeccionActiva].Puntos_X[I] * Math.cos(Proyecciones[ProyeccionActiva].Angulo) ) - ( Proyecciones[ProyeccionActiva].Puntos_Y[I] * Math.sin(Proyecciones[ProyeccionActiva].Angulo) );
 
 		Proyecciones[ProyeccionActiva].Puntos_Y[I] = ( Proyecciones[ProyeccionActiva].Puntos_Y[I] * Math.cos(Proyecciones[ProyeccionActiva].Angulo) ) - ( Proyecciones[ProyeccionActiva].Puntos_X[I] * Math.sin(Proyecciones[ProyeccionActiva].Angulo) );
-	 
+
 		Proyecciones[ProyeccionActiva].Puntos_X[I] = Proyecciones[ProyeccionActiva].Puntos_X[I] + Proyecciones[ProyeccionActiva].XCentro;
 
 		Proyecciones[ProyeccionActiva].Puntos_Y[I] = Proyecciones[ProyeccionActiva].Puntos_Y[I] + Proyecciones[ProyeccionActiva].YCentro;
 	}
 
 
-	for (var I = 0; I <= Proyecciones[ProyeccionActiva].Puntos_X.length - 1; I++) 
+	for (var I = 0; I <= Proyecciones[ProyeccionActiva].Puntos_X.length - 1; I++)
 	{
-		Coordenadas.push(PuntoALatLng({x: Proyecciones[ProyeccionActiva].Puntos_X[I], y:Proyecciones[ProyeccionActiva].Puntos_Y[I]}));	
+		Coordenadas.push(PuntoALatLng({x: Proyecciones[ProyeccionActiva].Puntos_X[I], y:Proyecciones[ProyeccionActiva].Puntos_Y[I]}));
 	}
 
 /*
@@ -214,14 +217,13 @@ function Puntos_Elipse()
         });
 
 */
-	
 
 	Proyecciones[ProyeccionActiva].Elipse = new google.maps.Polygon({
           paths: Coordenadas,
-          strokeColor: '#FF0000',
+          strokeColor: color[ProyeccionActiva],
           strokeOpacity: 0.8,
           strokeWeight: 1,
-          fillColor: '#FF0000',
+          fillColor: color[ProyeccionActiva],
           map:Mapa,
           fillOpacity: 0.35
         });
@@ -229,22 +231,22 @@ function Puntos_Elipse()
 
 
 	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
-       
+
 
 }
 
 
 function Medidas_Variacion()
 {
-	for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) -1; J++) 
+	for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) -1; J++)
 	{
-		for (var I = 0; I <= 23; I++) 
+		for (var I = 0; I <= 23; I++)
 		{
 			Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio = Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio + Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I];
 		}
 
 		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio = (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio / 24);
-	
+
 		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Mayor = Math.max.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
 
 		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Menor = Math.min.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
@@ -273,7 +275,7 @@ function URLCentroEventual(CentrosEventual)
 
     case "5":
     	URLImagen = "https://k61.kn3.net/A/5/5/0/4/A/7D7.png";
-    	break;	
+    	break;
 
     case "6":
     	URLImagen = "https://k61.kn3.net/A/E/B/0/7/C/D5A.png";
@@ -314,7 +316,7 @@ function URLCentroEventual(CentrosEventual)
     case "15":
     	URLImagen = "https://k61.kn3.net/9/2/F/D/1/D/B9B.png";
     	break;
-    
+
     case "16":
     	URLImagen = "https://k61.kn3.net/E/4/5/9/D/1/0EF.png";
     	break;
@@ -355,7 +357,7 @@ function URLCentroEventual(CentrosEventual)
     return URLImagen;
 }
 
-function URLCentroElipse(Centro) 
+function URLCentroElipse(Centro)
 {
     Centro = Centro.toString();
     switch (Centro) {
@@ -375,7 +377,8 @@ function URLCentroElipse(Centro)
             break;
     }
     return URLImagen;
-
 }
+<<<<<<< HEAD
+=======
 
-
+>>>>>>> da0e28fc4acaa7788a7498aca2abf29dcedb897a

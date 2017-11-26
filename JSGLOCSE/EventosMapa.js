@@ -471,6 +471,25 @@ function OcultarMostrar_Cargas(Parametro, ProyeccionNumero, Mapa) {
     }
 }
 
+function BuscarIndice(Arreglo, Valor, Parametro) 
+{    
+ for (I = 0; I < Arreglo.length; I++) 
+    {
+      if (Arreglo[I].Titulo === Valor) 
+      {
+        if (Parametro == 1) 
+        {
+            return Arreglo[I];
+        }
+        else 
+        {
+            return I;
+        }
+      }
+    }
+    return null;
+}
+
 function SwitchActivo(SwitchId)
 {
     if(($('#'+SwitchId).attr('class')).search('on') != -1)
@@ -500,6 +519,5 @@ function ToogleSwitchFalse(SwitchID)
     {
         $('#switch'+SwitchID).toggleClass('on');
     }
-     
 }
 
