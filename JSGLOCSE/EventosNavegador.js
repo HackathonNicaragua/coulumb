@@ -81,11 +81,9 @@ $( document ).ready(function()
     if(this.className == 'switch on' ){
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
-    }else{
-<<<<<<< HEAD
-=======
-
->>>>>>> ad1dbb6c62e449ff3df4f182c4453a04ed720f86
+    }
+    else
+    {
       MuestraOcultaC(null);
     }
   });
@@ -107,10 +105,7 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
-<<<<<<< HEAD
-=======
 
->>>>>>> ad1dbb6c62e449ff3df4f182c4453a04ed720f86
     }
   });
 

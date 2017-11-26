@@ -519,7 +519,5 @@ function ToogleSwitchFalse(SwitchID)
     {
         $('#switch'+SwitchID).toggleClass('on');
     }
-     
-
 }
 
