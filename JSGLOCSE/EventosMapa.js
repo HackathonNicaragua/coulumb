@@ -437,3 +437,54 @@ function MostrarConsumidores(Coordenadas, MapaCanvas) {
 
     }
 }
+
+
+
+// Borra la elipse y los 24 centros de carga //
+function OcultarMostrar_CentrosDeCargaEventuales(Parametro, Proyeccion_Marcador, Mapa) {
+    if (Parametro == 1) {
+        if (Proyecciones[Proyeccion_Marcador].CentrosEventuales != null) {
+            for (var I = 0; I < Proyecciones[Proyeccion_Marcador].CentrosEventuales.length; I++) {
+                Proyecciones[Proyeccion_Marcador].CentrosEventuales[I].MarcadorCentroEventual.setMap(Mapa);
+            }
+        }
+    }
+    else if (Parametro == 2) {
+        for (var I = 0; I < Proyecciones.length; I++) {
+            for (var J = 0; J < Proyecciones[I].CentrosEventuales.length; J++) {
+                Proyecciones[I].CentrosEventuales[J].MarcadorCentroEventual.setMap(Mapa);
+            }
+        }
+    }
+}
+
+function OcultarMostrar_Elipses(Parametro, ProyeccionNumero, Mapa) {
+    if (Parametro == 1) {
+        try { Proyecciones[ProyeccionNumero].Elipse.setMap(Mapa); Proyecciones[ProyeccionNumero].Centro.setMap(Mapa); } catch (Error) { }
+        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+
+    }
+    else if (Parametro == 2) {
+        for (var I = 0; I < Proyecciones.length; I++) {
+            try { Proyecciones[I].Elipse.setMap(Mapa); Proyecciones[I].Centro.setMap(Mapa); } catch (Error) { }
+        }
+        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+    }
+}
+
+function OcultarMostrar_Cargas(Parametro, ProyeccionNumero, Mapa) {
+    if (Proyecciones[ProyeccionNumero].MarcadoresCollecion != null) {
+        if (Parametro == 1) {
+            for (var I = 0; I < Proyecciones[ProyeccionNumero].MarcadoresCollecion.length; I++) {
+                Proyecciones[ProyeccionNumero].MarcadoresCollecion[I].Marcador.setMap(Mapa);
+            }
+        }
+        else if (Parametro == 2) {
+            for (var I = 0; I < Proyecciones.length; I++) {
+                for (var J = 0; J < Proyecciones[I].MarcadoresCollecion.length; J++) {
+                    Proyecciones[I].MarcadoresCollecion[J].Marcador.setMap(Mapa);
+                }
+            }
+        }
+    }
+}
