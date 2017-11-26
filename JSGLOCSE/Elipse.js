@@ -13,6 +13,11 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 		Proyecciones[ProyeccionActiva].Elipse.setMap(null);	 
 	}
 
+
+	if(Proyecciones[ProyeccionActiva].CentroElipse != null)
+	{
+		Proyecciones[ProyeccionActiva].CentroElipse.setMap(null);	 	
+	}
 			
 	for (var I = 0; I <= 23; I++)
 	{
@@ -56,6 +61,19 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	//Centro de la Elipse
 	Proyecciones[ProyeccionActiva].XCentro = Proyecciones[ProyeccionActiva].XCentro / 24; 
 	Proyecciones[ProyeccionActiva].YCentro = Proyecciones[ProyeccionActiva].YCentro / 24;
+
+
+
+	Proyecciones[ProyeccionActiva].CentroElipse = new google.maps.Marker(
+		 {
+          position: PuntoALatLng({x:Proyecciones[ProyeccionActiva].XCentro,y:Proyecciones[ProyeccionActiva].YCentro}),
+          title: (I+1).toString(),
+          draggable: false,
+          icon: URLCentroElipse(ProyeccionActiva),
+          map:Mapa,
+          animation: google.maps.Animation.DROP
+        });
+
 
 	Dispersion();
 	
@@ -368,6 +386,7 @@ function OcultarCentrosEventuales(Parametro , Mapa)
    		for (var i = 0; i < 24; i++) 
    		{
    			Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(Mapa);
+   			
    		} 
    }
    else
