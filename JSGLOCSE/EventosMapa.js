@@ -10,40 +10,8 @@ var ZoomMinimo;
 var referencia = null;
 var listmarker = [];
 var letras = ['A','B','C','D','E','F','G','H','I','J'];
-var numpin = 0;
-var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
-           'https://k60.kn3.net/A/9/6/F/4/2/E48.png',
-           'https://k60.kn3.net/8/3/F/5/3/E/8FD.png',
-           'https://k60.kn3.net/7/0/1/8/8/1/B61.png',
-           'https://k60.kn3.net/C/1/6/8/C/C/886.png',
-           'https://k60.kn3.net/8/9/A/9/0/1/F2E.png',
-           'https://k60.kn3.net/8/6/7/C/F/E/498.png',
-           'https://k60.kn3.net/2/5/1/F/E/5/57F.png',
-           'https://k60.kn3.net/3/2/C/A/2/7/EB4.png',
-           'https://k60.kn3.net/4/4/5/4/7/1/DA7.png']
 
-var url2 = ['https://k60.kn3.net/2/0/C/3/9/9/935.png',
-          'https://k60.kn3.net/0/E/E/A/5/2/E60.png',
-          'https://k60.kn3.net/B/4/A/1/C/E/897.png',
-          'https://k60.kn3.net/0/3/4/A/0/8/818.png',
-          'https://k60.kn3.net/3/8/1/9/C/F/775.png',
-          'https://k60.kn3.net/1/5/2/5/8/0/3B9.png',
-          'https://k60.kn3.net/5/F/0/8/C/D/EB3.png',
-          'https://k60.kn3.net/7/B/D/C/B/D/10C.png',
-          'https://k60.kn3.net/F/9/1/3/A/9/625.png',
-          'https://k60.kn3.net/B/5/C/8/6/D/22C.png']
-
-var url3 = ['https://k60.kn3.net/D/1/5/E/0/C/E8D.png',
-          'https://k60.kn3.net/2/B/C/E/2/E/FEC.png',
-          'https://k60.kn3.net/4/D/8/8/D/1/DC3.png',
-          'https://k60.kn3.net/C/0/6/A/7/6/CD2.png',
-          'https://k60.kn3.net/2/5/E/7/F/B/AAA.png',
-          'https://k60.kn3.net/6/3/F/0/8/4/23F.png',
-          'https://k60.kn3.net/C/2/7/C/D/8/C60.png',
-          'https://k60.kn3.net/D/C/0/B/8/0/0A4.png',
-          'https://k60.kn3.net/1/3/4/8/8/0/92F.png',
-          'https://k60.kn3.net/1/3/3/3/C/4/B96.png']
- var PinConsumidores = [];
+var PinConsumidores = [];
  // Inicializacion del mapa
  function InicializarMapa()
  {
@@ -202,31 +170,17 @@ var url3 = ['https://k60.kn3.net/D/1/5/E/0/C/E8D.png',
           x: posicionx,
           y: posiciony
         });
-
-        var imageA = {
-          url: url1[Proyecciones[ProyeccionActiva].Contador]
-        };
-
-        var imageB = {
-          url: url2[Proyecciones[ProyeccionActiva].Contador]
-        };
-
-        var imageC = {
-          url: url3[Proyecciones[ProyeccionActiva].Contador]
-        };
+      
 
         var marker = new google.maps.Marker({
           position: myLatlng,
           title: letras[Proyecciones[ProyeccionActiva].Contador]+"1",
           draggable: true,
-          icon: imageA.url,
+	      icon: Proyecciones[ProyeccionActiva].url[Proyecciones[ProyeccionActiva].Contador],
           map:Mapa,
           animation: google.maps.Animation.DROP,
           visible: true
-        });
-
-        listmarker.push(marker);
-
+        });       
 
 
         google.maps.event.addListener(marker, 'click', function()
