@@ -79,7 +79,7 @@ $( document ).ready(function()
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
     }else{
-<<<<<<< HEAD
+
       MuestraOcultaC(null);
     }
   });
@@ -101,8 +101,8 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
-=======
-      MuestraOculta(null);      
+
+
     }
   });
 
@@ -129,7 +129,6 @@ $( document ).ready(function()
       $(this).toggleClass('off');      
     }else{
       MostrarConsumidores(Mapa.getCenter(), null)
->>>>>>> 6bc58132f2799b6e2925da2a8f9b35586aed7023
     }
   });
 
