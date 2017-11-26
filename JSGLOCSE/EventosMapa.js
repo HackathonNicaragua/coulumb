@@ -131,7 +131,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           animation: google.maps.Animation.DROP
         });
 
-        google.maps.event.addListener(marker, 'click', function() 
+        google.maps.event.addListener(marker, 'click', function()
         {
           OperacionesTabla(3,Indice(marker.title).Horas);
           $('#ContenedorEmergente').show(500);
@@ -157,7 +157,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
  }
 
 
-function OperacionesTabla(Caso, Arreglo) 
+function OperacionesTabla(Caso, Arreglo)
 {
     var Potencias = []
     /*Lectura de las potencias */
@@ -202,13 +202,14 @@ function OperacionesTabla(Caso, Arreglo)
 
 function PotenciasAleatorias()
 {
-	for (var I = 0; I <= Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++) 
+	for (var I = 0; I <= Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++)
 	{
-		for (var J = 0; J <= 23; J++) 
+		for (var J = 0; J <= 23; J++)
 		{
 			Proyecciones[ProyeccionActiva].MarcadoresCollecion[I].Horas[J] =Math.floor((Math.random() * 100) + 1);
 		}
 	}
+
 }
 
 // Metodos para hacer operaciones de conversiones de coordenada
@@ -232,4 +233,3 @@ function PuntoALatLng(Punto)
   var CoordenadaMundo = new google.maps.Point(Punto.x / Escala + IzquierdaInferior.x, Punto.y / Escala + TopeDerecha.y);
   return Mapa.getProjection().fromPointToLatLng(CoordenadaMundo);
 }
-

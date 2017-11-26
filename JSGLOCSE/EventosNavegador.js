@@ -70,6 +70,7 @@ $( document ).ready(function()
 
 
 
+
   //Usuarios (6-10)
 	MarcadoresCollecion.push({Horas:[], X:0, Y:0,  Mayor:0, Menor:0, Promedio:0});
 
