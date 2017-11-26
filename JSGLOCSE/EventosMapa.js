@@ -445,14 +445,14 @@ function OcultarMostrar_CentrosDeCargaEventuales(Parametro, Proyeccion_Marcador,
     if (Parametro == 1) {
         if (Proyecciones[Proyeccion_Marcador].CentrosEventuales != null) {
             for (var I = 0; I < Proyecciones[Proyeccion_Marcador].CentrosEventuales.length; I++) {
-                Proyecciones[Proyeccion_Marcador].CentrosEventuales[I].MarcadorCentroEventual.setMap(Mapa);
+                Proyecciones[Proyeccion_Marcador].CentrosEventuales[I].Marcador.setMap(Mapa);
             }
         }
     }
     else if (Parametro == 2) {
         for (var I = 0; I < Proyecciones.length; I++) {
             for (var J = 0; J < Proyecciones[I].CentrosEventuales.length; J++) {
-                Proyecciones[I].CentrosEventuales[J].MarcadorCentroEventual.setMap(Mapa);
+                Proyecciones[I].CentrosEventuales[J].Marcador.setMap(Mapa);
             }
         }
     }
@@ -460,15 +460,13 @@ function OcultarMostrar_CentrosDeCargaEventuales(Parametro, Proyeccion_Marcador,
 
 function OcultarMostrar_Elipses(Parametro, ProyeccionNumero, Mapa) {
     if (Parametro == 1) {
-        try { Proyecciones[ProyeccionNumero].Elipse.setMap(Mapa); Proyecciones[ProyeccionNumero].Centro.setMap(Mapa); } catch (Error) { }
-        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+        try { Proyecciones[ProyeccionNumero].Elipse.setMap(Mapa); Proyecciones[ProyeccionNumero].CentroElipse.setMap(Mapa); } catch (Error) { }        
 
     }
     else if (Parametro == 2) {
         for (var I = 0; I < Proyecciones.length; I++) {
-            try { Proyecciones[I].Elipse.setMap(Mapa); Proyecciones[I].Centro.setMap(Mapa); } catch (Error) { }
-        }
-        if (PoligonoInterseccion != null) { PoligonoInterseccion.setMap(null); CentroInterseccion.setMap(null); }
+            try { Proyecciones[I].Elipse.setMap(Mapa); Proyecciones[I].CentroElipse.setMap(Mapa); } catch (Error) { }
+        }        
     }
 }
 
@@ -488,3 +486,36 @@ function OcultarMostrar_Cargas(Parametro, ProyeccionNumero, Mapa) {
         }
     }
 }
+
+function SwitchActivo(SwitchId)
+{
+    if(($('#'+SwitchId).attr('class')).search('on') != -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function ToogleSwitch(SwitchID)
+{
+
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == false)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+}
+
+function ToogleSwitchFalse(SwitchID)
+{
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == true)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+     
+}
+

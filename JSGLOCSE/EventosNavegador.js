@@ -72,86 +72,6 @@ $( document ).ready(function()
   		Centros_Eventuales(1,ProyeccionActiva);
   });
 
-$('#VerProyeccion1').click(function()
-                 {                                      
-                            if(SwitchActivo('switchglobal') == false)
-                            {
-                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
-                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
-                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
-                               ProyeccionActiva = 0;
-
-                                                         
-                               if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
-                            }
-                            else
-                            {                            
-                              ProyeccionActiva = 0;                                            
-                              if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
-                            }                             
-                            
-                            document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
-                            document.getElementById("sidebartexto").innerHTML = "Proyección 1";
-                                       
-
-                });
-
-
-
-                $('#VerProyeccion2').click(function()
-                 {                                      
-                            if(SwitchActivo('switchglobal') == false)
-                            {
-                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
-                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
-                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
-                               ProyeccionActiva = 1;                                                        
-                               if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
-                            }
-                            else
-                            {                            
-                              ProyeccionActiva = 1;                                            
-                              if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
-                            }                                      
-                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';                            
-                });
-
-
-
-                $('#VerProyeccion3').click(function()
-                 {                                      
-                            if(SwitchActivo('switchglobal') == false)
-                            {
-                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
-                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
-                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
-                               ProyeccionActiva = 2;                              
-
-                                                            
-
-                               if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
-                            }
-                            else
-                            {                            
-                              ProyeccionActiva = 2;                                            
-                              if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
-                            }                          
-                });
-
-
-
 
 
 
@@ -259,6 +179,84 @@ $('#sb_googlemaps').click(function(event)
   });
 
 
+
+$('#VerProyeccion1').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 0;
+
+                                                         
+                                OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                                OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 0;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);
+                            }                             
+                            
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
+                            document.getElementById("sidebartexto").innerHTML = "Proyección 1";
+                                       
+
+                });
+
+
+
+                $('#VerProyeccion2').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 1;                                                        
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 1;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                         
+                            }                                      
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';                            
+                });
+
+
+
+                $('#VerProyeccion3').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 2;                              
+                                                          
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 2;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                   
+                            }                          
+                });
+
+
   //Usuarios (6-10)
 	MarcadoresCollecion.push({Horas:[], X:0, Y:0,  Mayor:0, Menor:0, Promedio:0});
 
@@ -267,3 +265,36 @@ $('#sb_googlemaps').click(function(event)
 	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false,CentroElipse:null});
 
 });
+
+
+function SwitchActivo(SwitchId)
+{
+    if(($('#'+SwitchId).attr('class')).search('on') != -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function ToogleSwitch(SwitchID)
+{
+
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == false)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+}
+
+function ToogleSwitchFalse(SwitchID)
+{
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == true)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+     
+}

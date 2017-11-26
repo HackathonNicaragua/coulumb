@@ -3,7 +3,7 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 {
 	if(Proyecciones[ProyeccionActiva].ElipseDibujada)
 	{
-		OcultarCentrosEventuales(1 , null);
+		OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
 	}
 
 	Proyecciones[ProyeccionActiva].CentrosEventuales = new Array();
@@ -378,22 +378,4 @@ function URLCentroElipse(Centro)
 
 }
 
-
-function OcultarCentrosEventuales(Parametro , Mapa)
-{
-   if(Parametro == 1)
-   {
-   		for (var i = 0; i < 24; i++) 
-   		{
-   			Proyecciones[ProyeccionActiva].CentrosEventuales[i].Marcador.setMap(Mapa);
-   			
-   		} 
-   }
-   else
-   {
-
-   }
-}
-
- 
 
