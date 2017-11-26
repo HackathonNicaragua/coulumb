@@ -78,6 +78,39 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
      {
           SearchBox.setBounds(Mapa.getBounds());
      });
+
+      SearchBox.addListener('places_changed', function()
+      {
+      	  var markers = [];
+          var places = SearchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+         
+
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+          
+              return;
+            }
+           
+
+            if (place.geometry.viewport) 
+            {
+              
+              bounds.union(place.geometry.viewport);
+            }
+            else 
+            {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          Mapa.fitBounds(bounds);
+        });
+      
  }
 
 
