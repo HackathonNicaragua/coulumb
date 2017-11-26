@@ -47,6 +47,10 @@ $( document ).ready(function()
 
   })
 
+  $('#ContenedorEmergente').mouseleave(function (event) {
+    $('#ContenedorEmergente').hide(500);
+  });
+
   $('#Cat1CentroEventual').click(function (event )
   {
       Indice(referencia.title).Categoria = 1;
@@ -65,6 +69,7 @@ $( document ).ready(function()
   $('#Procesar').click(function(event)
   {
   		PotenciasAleatorias();
+  		Centros_Eventuales(1,ProyeccionActiva)
   });
 
 
@@ -74,8 +79,8 @@ $( document ).ready(function()
   //Usuarios (6-10)
 	MarcadoresCollecion.push({Horas:[], X:0, Y:0,  Mayor:0, Menor:0, Promedio:0});
 
-	Proyecciones.push({MarcadoresCollecion: [], Contador:1, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
-	Proyecciones.push({MarcadoresCollecion: [], Contador:1, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
-	Proyecciones.push({MarcadoresCollecion: [], Contador:1, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
+	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0});
 
 });
