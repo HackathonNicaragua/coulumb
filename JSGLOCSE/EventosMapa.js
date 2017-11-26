@@ -101,7 +101,8 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
       });
  }
 
- function AnadirMarcador(){
+ function AnadirMarcador()
+ {
         var myLatlng = PuntoALatLng({
           x: posicionx,
           y: posiciony
@@ -116,12 +117,10 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           title: letras[numpin]+"1",
           draggable: true,
           icon: image.url,
+          map:Mapa,
           animation: google.maps.Animation.DROP
         });
-
-
-
-        marker.setMap(Mapa);
+        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.tittle,Horas : [], X:posicionx, Y:posiciony});
  }
 
 // Metodos para hacer operaciones de conversiones de coordenada
