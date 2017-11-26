@@ -35,6 +35,7 @@ function Consumidores(Proyecciones, ProyeccionActiva)
         }
     }
 
+    Graficando_Sumatoria(ProyeccionActiva);
 }
 
 function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
@@ -162,5 +163,6 @@ function Graficando_Consumidores(Proyecciones, ProyeccionActiva, J)
 
 function Graficando_Sumatoria(ProyeccionActiva) 
 {
+    var ctx = document.getElementById('myChartTOTAL').getContext('2d');
 
 }
