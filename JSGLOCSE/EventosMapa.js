@@ -120,8 +120,15 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           map:Mapa,
           animation: google.maps.Animation.DROP
         });
+
+        marker.addListener('click', function() {
+          $('#ContenedorEmergente').show(500);
+          document.getElementById('ContenedorEmergente').style.left = posicionx + 'px';
+          document.getElementById('ContenedorEmergente').style.top = posiciony + 'px';
+        });
         Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.tittle,Horas : [], X:posicionx, Y:posiciony});
  }
+
 
 // Metodos para hacer operaciones de conversiones de coordenada
 
