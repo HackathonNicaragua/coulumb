@@ -17,14 +17,28 @@ $( document ).ready(function()
 
  	$('#LimitarMapa').click(function()
  	{
- 		DelimitarMapa();
+ 		DelimitarMapa(0);
+ 	});
+
+
+ 	$('#DeslimitarMapa').click(function()
+ 	{
+ 		if(Proyecciones[ProyeccionActiva].MarcadoresCollecion.length  > 0)
+ 		{
+ 			 $.Notification.autoHideNotify('error', 'top right', 'No se puede quitar la restriccion del mapa porque ya hay consumidores');                                                ;
+ 		}
+ 		else
+		{
+			 DelimitarMapa(1);
+		}
  	});
 
 
  	
   $('#containermapa').mousedown(function (event ) 
   {
-    if(event.which = 3){
+    if(event.which = 3)
+    {
       var posX = $(this).offset().left,
           posY = $(this).offset().top;
       posicionx = (event.pageX - posX);

@@ -75,30 +75,39 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 
 
  // Delimita el mapa impidiendo que el usuario se mueva fuera de los limites
- function DelimitarMapa()
+ function DelimitarMapa(Parametro)
  {
- 	  Rectangulo = new google.maps.Rectangle(
- 	  {
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.4,
-          strokeWeight: 6,
-          fillColor: '#FF0000',
-          fillOpacity: 0,
-          map: Mapa,
-          bounds: Mapa.getBounds()
-      });
+ 	if(Parametro == 0)
+ 	{
+	 	  Rectangulo = new google.maps.Rectangle(
+	 	  {
+	          strokeColor: '#FF0000',
+	          strokeOpacity: 0.4,
+	          strokeWeight: 6,
+	          fillColor: '#FF0000',
+	          fillOpacity: 0,
+	          map: Mapa,
+	          bounds: Mapa.getBounds()
+	      });
 
- 	  Bordes = Mapa.getBounds();
- 	  ZoomMinimo = Mapa.getZoom();
- 	  UltimoCentro = Mapa.getCenter();
- 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
- 	  {
-            // Poner aqui metodo para poner el mapa
-            if(numpin<10){
-              AnadirMarcador();
-              numpin++;
-            }
-      });
+	 	  Bordes = Mapa.getBounds();
+	 	  ZoomMinimo = Mapa.getZoom();
+	 	  UltimoCentro = Mapa.getCenter();
+	 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
+	 	  {
+	            // Poner aqui metodo para poner el mapa
+	            if(numpin<10){
+	              AnadirMarcador();
+	              numpin++;
+	            }
+	      });
+
+	}
+	else
+	{
+		 Rectangulo.setMap(null);
+		 Rectangulo = null;	
+	}
  }
 
  function AnadirMarcador()
