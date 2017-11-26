@@ -22,8 +22,6 @@ function Datos_Graficas(Proyecciones, ProyeccionActiva)
 function Consumidores(Proyecciones, ProyeccionActiva)
 {
 	var Horas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-	
 	
 	if (ArreglosGrafica.length > 0) 
 	{
