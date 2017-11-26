@@ -190,16 +190,14 @@ function Puntos_Elipse()
           fillOpacity: 0.35,
           map: Mapa
         });
-<<<<<<< HEAD
+
 
 	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
 }
 
-=======
-        Poligono.setMap(Mapa);
 
-}
->>>>>>> c3000a84c80ffe77fece56c01945d3673991ea5b
+
+
 
 
 function Medidas_Variacion()
