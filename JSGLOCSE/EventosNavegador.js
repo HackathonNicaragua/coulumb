@@ -82,10 +82,6 @@ $( document ).ready(function()
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
     }else{
-<<<<<<< HEAD
-=======
-
->>>>>>> bf30cf3ed55b99163063e4a91dbedcda20fc727e
       MuestraOcultaC(null);
     }
   });
@@ -107,11 +103,6 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
-<<<<<<< HEAD
-=======
-
-
->>>>>>> bf30cf3ed55b99163063e4a91dbedcda20fc727e
     }
   });
 
@@ -192,7 +183,7 @@ $('#sb_googlemaps').click(function(event)
 
 
 $('#VerProyeccion1').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
@@ -200,71 +191,71 @@ $('#VerProyeccion1').click(function()
                                OcultarMostrar_Cargas(1,ProyeccionActiva,null);
                                ProyeccionActiva = 0;
 
-                                                         
+
                                 OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
                                 OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
                                 OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 0;                                            
+                            {
+                              ProyeccionActiva = 0;
                               OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
                               OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
                               OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);
-                            }                             
-                            
+                            }
+
                             document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                             document.getElementById("sidebartexto").innerHTML = "Proyección 1";
-                                       
+
 
                 });
 
 
 
                 $('#VerProyeccion2').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
                                OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
                                OcultarMostrar_Cargas(1,ProyeccionActiva,null);
-                               ProyeccionActiva = 1;                                                        
+                               ProyeccionActiva = 1;
                                OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
                                OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 1;                                            
+                            {
+                              ProyeccionActiva = 1;
                               OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
                                OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
-                               OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                         
-                            }                                      
-                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';                            
+                               OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);
+                            }
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                 });
 
 
 
                 $('#VerProyeccion3').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
                                OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
                                OcultarMostrar_Cargas(1,ProyeccionActiva,null);
-                               ProyeccionActiva = 2;                              
-                                                          
+                               ProyeccionActiva = 2;
+
                                OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
                                OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 2;                                            
+                            {
+                              ProyeccionActiva = 2;
                               OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
                               OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
-                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                   
-                            }                          
+                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);
+                            }
                 });
 
 
@@ -307,5 +298,5 @@ function ToogleSwitchFalse(SwitchID)
     {
         $('#switch'+SwitchID).toggleClass('on');
     }
-     
+
 }
