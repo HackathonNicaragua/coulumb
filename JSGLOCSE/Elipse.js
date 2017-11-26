@@ -1,5 +1,5 @@
 function Centros_Eventuales(Parametro,ProyeccionActiva)
-<<<<<<< HEAD
+
 {
 	if(Proyecciones[ProyeccionActiva].ElipseDibujada)
 	{
@@ -12,11 +12,8 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 	{
 		Proyecciones[ProyeccionActiva].Elipse.setMap(null);	 
 	}
-=======
-			{
->>>>>>> 4d24fe098efeae2c2e8537b1f6ec2532fad97999
 
-
+			
 	for (var I = 0; I <= 23; I++)
 	{
 
@@ -201,27 +198,22 @@ function Puntos_Elipse()
 */
 	
 
-	var Poligono = new google.maps.Polygon({
+	Proyecciones[ProyeccionActiva].Elipse = new google.maps.Polygon({
           paths: Coordenadas,
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 1,
           fillColor: '#FF0000',
+          map:Mapa,
           fillOpacity: 0.35
         });
-<<<<<<< HEAD
+
 
 
 	Proyecciones[ProyeccionActiva].ElipseDibujada = true;
-}
-
-
-
-=======
-        Poligono.setMap(Mapa);
+       
 
 }
->>>>>>> 4d24fe098efeae2c2e8537b1f6ec2532fad97999
 
 
 function Medidas_Variacion()
@@ -365,7 +357,7 @@ function URLCentroElipse(Centro)
             break;
     }
     return URLImagen;
-<<<<<<< HEAD
+
 }
 
 
@@ -383,6 +375,6 @@ function OcultarCentrosEventuales(Parametro , Mapa)
 
    }
 }
-=======
-} 
->>>>>>> 4d24fe098efeae2c2e8537b1f6ec2532fad97999
+
+ 
+

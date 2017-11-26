@@ -72,10 +72,10 @@ $( document ).ready(function()
   		Centros_Eventuales(1,ProyeccionActiva)
   });
 
-  $('#graficamontaña').click(function(event))
+  $('#graficamontaña').click(function(event)
   {
     Graficando_Hill();
-  }
+  });
 
 
 
