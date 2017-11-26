@@ -8,14 +8,14 @@ function Centros_Eventuales(Parametro,ProyeccionActiva)
 		YTemp = 0;
 		Suma = 0;
 
-		for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadorCollecion.length)-1; J++) 
+		for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length)-1; J++) 
 		{
 
-			XTemp = XTemp + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadorCollecion[J].X);
+			XTemp = XTemp + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].X);
 
-			YTemp = YTemp + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Y);
+			YTemp = YTemp + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I] * Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Y);
 		
-			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadorCollecion[J].Horas[I]);
+			Suma = Suma + (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I]);
 		}
 
 		Proyecciones[ProyeccionActiva].CentrosEventuales[I].X= XTemp/Suma;  
@@ -167,5 +167,17 @@ function Puntos_Elipse()
 
 function Medidas_Variacion()
 {
+	for (var J = 0; J <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) -1; J++) 
+	{
+		for (var I = 0; I <= 23; I++) 
+		{
+			Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio = Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio + Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas[I];
+		}
+
+		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio = (Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Promedio / 24);
 	
+		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Mayor = Math.max.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
+
+		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Menor = Math.min.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
+	}
 }
