@@ -80,12 +80,36 @@ $( document ).ready(function()
       $(this).toggleClass('off');
       //alert("Markers Activos");
     }else{
-      MuestraOculta(null);
-
-      //alert("Markers Desactivos");
-      //$(this).toggleClass('off');
+      MuestraOculta(null);      
     }
   });
+
+
+  $('#switchcarga').click(function (event) 
+  {
+
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      MuestraOculta(Mapa);
+      $(this).toggleClass('off');
+      //alert("Markers Activos");
+    }else{
+      MuestraOculta(null);      
+    }
+  });
+
+
+  $('#switchconsumidores').click(function (event) 
+  {
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      MostrarConsumidores(Mapa.getCenter(), Mapa)
+      $(this).toggleClass('off');      
+    }else{
+      MostrarConsumidores(Mapa.getCenter(), null)
+    }
+  });
+
 
   $('#graficamontaña').click(function(event)
   {
