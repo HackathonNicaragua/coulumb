@@ -7,6 +7,7 @@ var ZoomEscucha = false;
 var ZoomBordes;
 var Bordes;
 var ZoomMinimo;
+var referencia = null;
 var letras = ['A','B','C','D','E','F','G','H','I','J'];
 var numpin = 0;
 var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
@@ -106,7 +107,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 	else
 	{
 		 Rectangulo.setMap(null);
-		 Rectangulo = null;	
+		 Rectangulo = null;
 	}
  }
 
@@ -130,12 +131,17 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           animation: google.maps.Animation.DROP
         });
 
-        marker.addListener('click', function() {
+        google.maps.event.addListener(marker, 'click', function() {
           $('#ContenedorEmergente').show(500);
           document.getElementById('ContenedorEmergente').style.left = posicionx + 'px';
           document.getElementById('ContenedorEmergente').style.top = posiciony + 'px';
+          document.getElementById('clatitud').value = marker.getPosition().lat();
+          document.getElementById('clongitud').value = marker.getPosition().lng();
+          var posicion =  LatLngAPunto(marker.getPosition());
+          document.getElementById('ccoordenadas').value = posicion.x + ", " + posicion.y;
+          referencia = marker;
         });
-        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.tittle,Horas : [], X:posicionx, Y:posiciony});
+        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.tittle,Horas : [], X:posicionx, Y:posiciony, Categoria: 1});
  }
 
 
@@ -147,7 +153,7 @@ function LatLngAPunto(latLngPunto)
   var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getNorthEast());
   var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getSouthWest());
   var Escala = Math.pow(2, Mapa.getZoom());
-  var CoordenadaMundo = Mapa.getProjection().fromLatLngToPoint(LatLngPunto);
+  var CoordenadaMundo = Mapa.getProjection().fromLatLngToPoint(latLngPunto);
   return new google.maps.Point((CoordenadaMundo.x - IzquierdaInferior.x) * Escala, (CoordenadaMundo.y - TopeDerecha.y) * Escala);
 }
 
