@@ -3,7 +3,7 @@ var Proyecciones = new Array();
 var ProyeccionActiva = 0;
 var MarcadoresCollecion = new Array();
 var Mapa = null;
-var ProyeccionActiva = 1;
+var ProyeccionActiva = 0;
 
 
 $( document ).ready(function()
@@ -34,8 +34,8 @@ $( document ).ready(function()
  	});
 
 
- 	
-  $('#containermapa').mousedown(function (event ) 
+
+  $('#containermapa').mousedown(function (event )
   {
     if(event.which = 3)
     {
@@ -46,6 +46,23 @@ $( document ).ready(function()
     }
 
   })
+
+  $('#Cat1CentroEventual').click(function (event )
+  {
+      referencia.Categoria = 1;
+  })
+
+  $('#Cat2CentroEventual').click(function (event )
+  {
+      referencia.Categoria = 2;
+  })
+
+  $('#Cat3CentroEventual').click(function (event )
+  {
+      referencia.Categoria = 3;
+  })
+
+
 
 
   //Usuarios (6-10)
