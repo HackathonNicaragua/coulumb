@@ -175,6 +175,17 @@ function Puntos_Elipse()
         });
 
 */
+	for (var I = 0; I <= 23; I++) 
+	{
+		var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: letras[numpin]+"1",
+          draggable: false,
+          icon: image.url,
+          map:Mapa
+        });
+	}
+
 	var Poligono = new google.maps.Polygon({
           paths: Coordenadas,
           strokeColor: '#FF0000',
@@ -185,7 +196,7 @@ function Puntos_Elipse()
         });
         Poligono.setMap(Mapa);
 
-    
+
 }
 
 function Coordenadas()
