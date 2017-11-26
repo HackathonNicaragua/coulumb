@@ -521,3 +521,56 @@ function ToogleSwitchFalse(SwitchID)
     }
 }
 
+function ActualizarTabla()
+{
+    var Tabla = document.getElementById('cuerpotablaconsumidores');
+    Tabla.innerHTML = "";
+    
+    ArregloConsumidores = DevolverTablaConsumidores(ProyeccionActiva);
+    for (var I = 0; I < ArregloConsumidores.length; I++) {
+        var Fila = Tabla.insertRow(Tabla.getElementsByTagName("tr").length);
+        var Celda0 = Fila.insertCell(0);
+        var Celda1 = Fila.insertCell(1);
+        var Celda2 = Fila.insertCell(2);
+        var Celda3 = Fila.insertCell(3);
+        var Celda4 = Fila.insertCell(4);
+        var Celda5 = Fila.insertCell(5);
+        var Celda6 = Fila.insertCell(6);
+
+        Celda0.innerHTML = ArregloConsumidores[I][0];
+        if(ArregloConsumidores[I][1] == "1")
+        {
+            Celda1.innerHTML = '<span class="label label-table label-inverse">Categoria '+ArregloConsumidores[I][1]+'</span>'    
+        }
+        else if (ArregloConsumidores[I][1] == "2")
+        {
+            Celda1.innerHTML = '<span class="label label-table label-primary">Categoria '+ArregloConsumidores[I][1]+'</span>'
+        }
+        else if (ArregloConsumidores[I][1] == "3")
+        {
+            Celda1.innerHTML = '<span class="label label-table label-warning">Categoria '+ArregloConsumidores[I][1]+'</span>'
+        }
+        else
+        {
+            Celda1.innerHTML  = '?';   
+        }
+
+        Celda2.innerHTML = (ArregloConsumidores[I][2]);
+        Celda3.innerHTML = (ArregloConsumidores[I][3]);
+        if (ProyeccionActiva != 3) {
+            if (isNaN(ArregloConsumidores[I][4]) == false) { Celda4.innerHTML = (ArregloConsumidores[I][4]).toFixed(4); }
+            else { Celda4.innerHTML = (ArregloConsumidores[I][4]); }
+
+            if (isNaN(ArregloConsumidores[I][5]) == false) { Celda5.innerHTML = Math.trunc(ArregloConsumidores[I][5]).toFixed(4); }
+            else { Celda5.innerHTML = (ArregloConsumidores[I][5]); }
+            Celda6.innerHTML = '<button type="button" class="btn btn-googleplus waves-effect waves-light ui-btn ui-shadow ui-corner-all" onclick="VerMarcadorMapa(\'' + ArregloConsumidores[I][0] + '\')"><i class="fa fa-map-marker"></i></button>' 
+        }
+        else
+        {
+            Celda4.innerHTML = "?";
+            Celda5.innerHTML = "?";
+            Celda6.innerHTML = "?";
+        }
+    }
+}
+
