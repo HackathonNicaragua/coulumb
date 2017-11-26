@@ -69,7 +69,7 @@ $( document ).ready(function()
   $('#Procesar').click(function(event)
   {
   		PotenciasAleatorias();
-  		Centros_Eventuales(1,ProyeccionActiva)
+  		Centros_Eventuales(1,ProyeccionActiva);
   });
 
   $('#graficamontaña').click(function(event)
@@ -77,6 +77,32 @@ $( document ).ready(function()
     Graficando_Hill();
   });
 
+
+  $('#graficaconsumidores').click(function(event)
+  {
+    Datos_Graficas(Proyecciones, ProyeccionActiva); 
+  });
+
+$('#sb_googlemaps').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'block';
+    document.getElementById('containergraficas').style.display = 'none';
+    document.getElementById('containerreportes').style.display = 'none';
+  });
+
+  $('#sb_graficas').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'none';
+    document.getElementById('containergraficas').style.display = 'block';
+    document.getElementById('containerreportes').style.display = 'none';
+  });
+
+  $('#sb_reportes').click(function(event)
+  {
+    document.getElementById('containermapa').style.display = 'none';
+    document.getElementById('containergraficas').style.display = 'none';
+    document.getElementById('containerreportes').style.display = 'block';
+  });
 
 
   //Usuarios (6-10)
