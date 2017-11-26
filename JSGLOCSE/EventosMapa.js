@@ -97,10 +97,10 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 	 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
 	 	  {
 	            // Poner aqui metodo para poner el mapa
-	            if(numpin<10){
+	            if(Proyecciones[ProyeccionActiva].Contador < 10)
+	            {
 	              AnadirMarcador();
-	              numpin++;
-	            }
+	              Proyecciones[ProyeccionActiva].Contador++;	            }
 	      });
 
 	}
@@ -189,6 +189,19 @@ function OperacionesTabla(Caso, Arreglo)
    return referencia;
  }
 
+
+// Potencias aleatorias
+
+function PotenciasAleatorias()
+{
+	for (var I = 0; I <= Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; I++) 
+	{
+		for (var J = 0; J <= 23; J++) 
+		{
+			Proyecciones[ProyeccionActiva].MarcadoresCollecion[I].Horas[J] =Math.floor((Math.random() * 100) + 1);
+		}
+	}
+}
 
 // Metodos para hacer operaciones de conversiones de coordenada
 

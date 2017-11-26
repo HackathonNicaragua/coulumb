@@ -62,6 +62,11 @@ $( document ).ready(function()
     Indice(referencia.title).Categoria = 3;
   })
 
+  $('#Procesar').click(function(event)
+  {
+  		PotenciasAleatorias();
+  });
+
 
 
 
