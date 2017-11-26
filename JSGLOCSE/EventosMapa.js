@@ -70,6 +70,14 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         }
     });
 
+	var Textobox = document.getElementById('BusquedaLugar');
+    var SearchBox = new google.maps.places.SearchBox(Textobox);
+
+
+     Mapa.addListener('bounds_changed', function() 
+     {
+          SearchBox.setBounds(Mapa.getBounds());
+     });
  }
 
 
