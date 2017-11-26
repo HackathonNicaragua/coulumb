@@ -81,8 +81,8 @@ $( document ).ready(function()
     if(this.className == 'switch on' ){
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
-
-    }else{
+    }else
+    {
       MuestraOcultaC(null);
     }
   });
