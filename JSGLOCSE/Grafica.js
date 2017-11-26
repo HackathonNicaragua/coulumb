@@ -175,6 +175,23 @@ function Graficando_Hill()
 
 		Puntos_Z.push(Auxiliar);
 	}
+
+	var data = [{
+		z: Puntos_Z,
+		type: 'surface'
+	}];
+
+	var layout = {
+
+		margin: {
+			l:20, 
+			r:20, 
+			b:20,
+			t:20,
+		}
+	};
+
+	Plotly.newPlot('myDiv', data, layout);
 }
 
 

@@ -47,6 +47,10 @@ $( document ).ready(function()
 
   })
 
+  $('#ContenedorEmergente').mouseleave(function (event) {
+    $('#ContenedorEmergente').hide(500);
+  });
+
   $('#Cat1CentroEventual').click(function (event )
   {
       Indice(referencia.title).Categoria = 1;
@@ -68,6 +72,10 @@ $( document ).ready(function()
   		Centros_Eventuales(1,ProyeccionActiva)
   });
 
+  $('#graficamontaña').click(function(event))
+  {
+    Graficando_Hill();
+  }
 
 
 
