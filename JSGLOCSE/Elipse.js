@@ -196,12 +196,6 @@ function Puntos_Elipse()
         });
         Poligono.setMap(Mapa);
 
-
-}
-
-function Coordenadas()
-{
-
 }
 
 
@@ -221,3 +215,4 @@ function Medidas_Variacion()
 		Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Menor = Math.min.apply(Math, Proyecciones[ProyeccionActiva].MarcadoresCollecion[J].Horas);
 	}
 }
+
