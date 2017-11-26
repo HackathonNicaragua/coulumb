@@ -4,7 +4,7 @@ var ProyeccionActiva = 0;
 var MarcadoresCollecion = new Array();
 var Mapa = null;
 var ProyeccionActiva = 0;
-
+var MostrarProyecciones = false;
 
 $( document ).ready(function()
 {
@@ -72,6 +72,9 @@ $( document ).ready(function()
   		Centros_Eventuales(1,ProyeccionActiva);
   });
 
+
+
+
   $('#switchcarga').click(function (event) {
 
     $(this).toggleClass('on');
@@ -79,6 +82,10 @@ $( document ).ready(function()
       MuestraOcultaC(Mapa);
       $(this).toggleClass('off');
     }else{
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf30cf3ed55b99163063e4a91dbedcda20fc727e
       MuestraOcultaC(null);
     }
   });
@@ -100,6 +107,11 @@ $( document ).ready(function()
       $(this).toggleClass('off');
     }else{
       MuestraOcultaE(null);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bf30cf3ed55b99163063e4a91dbedcda20fc727e
     }
   });
 
@@ -170,7 +182,90 @@ $('#sb_googlemaps').click(function(event)
     document.getElementById('containermapa').style.display = 'none';
     document.getElementById('containergraficas').style.display = 'none';
     document.getElementById('containerreportes').style.display = 'block';
+    document.getElementById('cargasproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length).toString() + " / 10";
+    document.getElementById('centrosproyeccion').innerHTML = (Proyecciones[ProyeccionActiva].CentrosEventuales.length).toString() + " / 24";
+    document.getElementById('Radiox').innerHTML = ((Proyecciones[ProyeccionActiva].XCentro).toFixed(2)).toString();
+    document.getElementById('Radioy').innerHTML = ((Proyecciones[ProyeccionActiva].YCentro).toFixed(2)).toString();
+
   });
+
+
+
+$('#VerProyeccion1').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 0;
+
+                                                         
+                                OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                                OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 0;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);
+                            }                             
+                            
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
+                            document.getElementById("sidebartexto").innerHTML = "Proyección 1";
+                                       
+
+                });
+
+
+
+                $('#VerProyeccion2').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 1;                                                        
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 1;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                         
+                            }                                      
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';                            
+                });
+
+
+
+                $('#VerProyeccion3').click(function()
+                 {                                      
+                            if(SwitchActivo('switchglobal') == false)
+                            {
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                               OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                               ProyeccionActiva = 2;                              
+                                                          
+                               OcultarMostrar_Cargas(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,Mapa);
+                               OcultarMostrar_Elipses(1,ProyeccionActiva,Mapa);
+                            }
+                            else
+                            {                            
+                              ProyeccionActiva = 2;                                            
+                              OcultarMostrar_Cargas(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,Mapa);
+                              OcultarMostrar_Elipses(2,ProyeccionActiva,Mapa);                                   
+                            }                          
+                });
 
 
   //Usuarios (6-10)
@@ -181,3 +276,36 @@ $('#sb_googlemaps').click(function(event)
 	Proyecciones.push({MarcadoresCollecion: [], Contador:0, CentrosEventuales : new Array(), XDispersion:0, YDispersion:0, XYCorrelacion:0, XCentro:0, YCentro:0, XSigma: 0, YSigma:0, XExactitud:0, YExactitud:0, FhiExactitud:0, PhiExactitud:0, R:0, Angulo:0, FhiSigma2:0, PhiSigma2:0, FhiRadio:0, PhiRadio:0,Elipse : null,ElipseDibujada : false,CentroElipse:null});
 
 });
+
+
+function SwitchActivo(SwitchId)
+{
+    if(($('#'+SwitchId).attr('class')).search('on') != -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function ToogleSwitch(SwitchID)
+{
+
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == false)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+}
+
+function ToogleSwitchFalse(SwitchID)
+{
+    $('#switch'+SwitchID).toggleClass('on');
+    if(SwitchActivo('switch'+SwitchID) == true)
+    {
+        $('#switch'+SwitchID).toggleClass('on');
+    }
+     
+}
