@@ -72,6 +72,22 @@ $( document ).ready(function()
   		Centros_Eventuales(1,ProyeccionActiva)
   });
 
+  $('#switchcarga').click(function (event) {
+
+    $(this).toggleClass('on');
+    if(this.className == 'switch on' ){
+      MuestraOculta(Mapa);
+      $(this).toggleClass('off');
+      //alert("Markers Activos");
+    }else{
+      MuestraOculta(null);
+
+      //alert("Markers Desactivos");
+      //$(this).toggleClass('off');
+    }
+  });
+
+
 
 
 

@@ -8,6 +8,7 @@ var ZoomBordes;
 var Bordes;
 var ZoomMinimo;
 var referencia = null;
+var listmarker = [];
 var letras = ['A','B','C','D','E','F','G','H','I','J'];
 var numpin = 0;
 var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
@@ -96,7 +97,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
 	 	  UltimoCentro = Mapa.getCenter();
 	 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
 	 	  {
-	           
+
 	            if(Proyecciones[ProyeccionActiva].Contador < 10)
 	            {
 	              AnadirMarcador();
@@ -128,8 +129,13 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           draggable: true,
           icon: image.url,
           map:Mapa,
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP,
+          visible: true
         });
+
+        listmarker.push(marker);
+
+
 
         google.maps.event.addListener(marker, 'click', function()
         {
@@ -142,7 +148,7 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           document.getElementById('clongitud').value = marker.getPosition().lng();
           var posicion =  LatLngAPunto(marker.getPosition());
           document.getElementById('ccoordenadas').value = posicion.x + ", " + posicion.y;
-          
+
           if(Indice(marker.title).Categoria == 1 ){
             document.getElementById('Cat1CentroEventual').checked = true;
           }else if(Indice(marker.title).Categoria == 2 ){
@@ -167,6 +173,21 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         });
         Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : OperacionesTabla(2, null) , X:posicionx, Y:posiciony, Categoria: 1});
  }
+
+ function MuestraOculta(statu){
+        //recorremos todos los markes de la lista
+        for(i=0;Proyecciones[ProyeccionActiva].MarcadoresCollecion.length;i++){
+                    //comparamos si el marker actual en el recorrido es visible
+            if(Proyecciones[ProyeccionActiva].MarcadoresCollecion[i].Marcador == null)
+            {
+              Proyecciones[ProyeccionActiva].MarcadoresCollecion[i].Marcador.setMap(statu);
+            }else {
+              Proyecciones[ProyeccionActiva].MarcadoresCollecion[i].Marcador.setMap(statu);
+            }
+        }
+}
+
+
 
 
 function OperacionesTabla(Caso, Arreglo)
