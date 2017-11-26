@@ -7,18 +7,30 @@ var ZoomEscucha = false;
 var ZoomBordes;
 var Bordes;
 var ZoomMinimo;
+var letras = ['A','B','C','D','E','F','G','H','I','J'];
+var numpin = 0;
+var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
+           'https://k60.kn3.net/A/9/6/F/4/2/E48.png',
+           'https://k60.kn3.net/8/3/F/5/3/E/8FD.png',
+           'https://k60.kn3.net/7/0/1/8/8/1/B61.png',
+           'https://k60.kn3.net/C/1/6/8/C/C/886.png',
+           'https://k60.kn3.net/8/9/A/9/0/1/F2E.png',
+           'https://k60.kn3.net/8/6/7/C/F/E/498.png',
+           'https://k60.kn3.net/2/5/1/F/E/5/57F.png',
+           'https://k60.kn3.net/3/2/C/A/2/7/EB4.png',
+           'https://k60.kn3.net/4/4/5/4/7/1/DA7.png']
  // Inicializacion del mapa
- function InicializarMapa() 
+ function InicializarMapa()
  {
-   
-    Mapa = new google.maps.Map(document.getElementById('Mapa'), 
+
+    Mapa = new google.maps.Map(document.getElementById('Mapa'),
     {
       center: {lat: 12.1436131, lng: -86.2607103},
       zoom: 15
     });
 
-        	
-    google.maps.event.addListener(Mapa, 'center_changed', function () 
+
+    google.maps.event.addListener(Mapa, 'center_changed', function ()
     {
         if (Rectangulo != null) {
 
@@ -32,16 +44,16 @@ var ZoomMinimo;
     });
 
     // Validacion de zoom para que no se salga del extremo del rectangulo en caso de que este muy cerca del borde
-	ZoomEscucha = google.maps.event.addListener(Mapa, 'zoom_changed', function (event) 
+	ZoomEscucha = google.maps.event.addListener(Mapa, 'zoom_changed', function (event)
     {
-        if (Mapa.getZoom() >= ZoomMinimo) 
+        if (Mapa.getZoom() >= ZoomMinimo)
         {
-            ZoomBordes = google.maps.event.addListenerOnce(Mapa, 'bounds_changed', function (event) 
+            ZoomBordes = google.maps.event.addListenerOnce(Mapa, 'bounds_changed', function (event)
             {
-                if (Rectangulo != null) 
+                if (Rectangulo != null)
                 {
                     if (CondicionZoom == false)
-                        if ((Bordes.contains(Mapa.getBounds().getNorthEast())) == false || (Bordes.contains(Mapa.getBounds().getSouthWest()) == false)) 
+                        if ((Bordes.contains(Mapa.getBounds().getNorthEast())) == false || (Bordes.contains(Mapa.getBounds().getSouthWest()) == false))
                         {
                             CondicionZoom = true;
                             Mapa.fitBounds(Bordes);
@@ -52,7 +64,7 @@ var ZoomMinimo;
                 }
             });
     	}
-        else 
+        else
         {
             Mapa.setZoom(ZoomMinimo);
         }
@@ -79,22 +91,43 @@ var ZoomMinimo;
  	  Bordes = Mapa.getBounds();
  	  ZoomMinimo = Mapa.getZoom();
  	  UltimoCentro = Mapa.getCenter();
- 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event) 
+ 	  google.maps.event.addListener(Rectangulo, 'rightclick', function(event)
  	  {
             // Poner aqui metodo para poner el mapa
+            if(numpin<10){
+              AnadirMarcador();
+              numpin++;
+            }
       });
  }
 
- 
+ function AnadirMarcador(){
+        var myLatlng = PuntoALatLng({
+          x: posicionx,
+          y: posiciony
+        });
+
+        var image = {
+          url: url1[numpin]
+        };
+
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: letras[numpin]+"1",
+          draggable: true,
+          icon: image.url,
+          animation: google.maps.Animation.DROP
+        });
 
 
 
-
+        marker.setMap(Mapa);
+ }
 
 // Metodos para hacer operaciones de conversiones de coordenada
 
 //Convierte un objeto de latitudlongitud a coordenada x e y
-function LatLngAPunto(latLngPunto) 
+function LatLngAPunto(latLngPunto)
 {
   var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getNorthEast());
   var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getSouthWest());
@@ -104,7 +137,7 @@ function LatLngAPunto(latLngPunto)
 }
 
 // Convierte una coordenada x e y a un punto en el mapa
-function PuntoALatLng(Punto) 
+function PuntoALatLng(Punto)
 {
   var TopeDerecha = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getNorthEast());
   var IzquierdaInferior = Mapa.getProjection().fromLatLngToPoint(Mapa.getBounds().getSouthWest());
@@ -112,5 +145,3 @@ function PuntoALatLng(Punto)
   var CoordenadaMundo = new google.maps.Point(Punto.x / Escala + IzquierdaInferior.x, Punto.y / Escala + TopeDerecha.y);
   return Mapa.getProjection().fromPointToLatLng(CoordenadaMundo);
 }
-
-
