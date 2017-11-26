@@ -49,17 +49,17 @@ $( document ).ready(function()
 
   $('#Cat1CentroEventual').click(function (event )
   {
-      referencia.Categoria = 1;
+      Indice(referencia.title).Categoria = 1;
   })
 
   $('#Cat2CentroEventual').click(function (event )
   {
-      referencia.Categoria = 2;
+    Indice(referencia.title).Categoria = 2;
   })
 
   $('#Cat3CentroEventual').click(function (event )
   {
-      referencia.Categoria = 3;
+    Indice(referencia.title).Categoria = 3;
   })
 
 

@@ -71,47 +71,6 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
         }
     });
 
-	var Textobox = document.getElementById('BusquedaLugar');
-    var SearchBox = new google.maps.places.SearchBox(Textobox);
-
-
-     Mapa.addListener('bounds_changed', function() 
-     {
-          SearchBox.setBounds(Mapa.getBounds());
-     });
-
-      SearchBox.addListener('places_changed', function()
-      {
-      	  var markers = [];
-          var places = SearchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-         
-
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-          
-              return;
-            }
-           
-
-            if (place.geometry.viewport) 
-            {
-              
-              bounds.union(place.geometry.viewport);
-            }
-            else 
-            {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          Mapa.fitBounds(bounds);
-        });
-      
  }
 
 
@@ -181,8 +140,23 @@ var url1 = ['https://k60.kn3.net/9/7/7/1/F/F/EC8.png',
           var posicion =  LatLngAPunto(marker.getPosition());
           document.getElementById('ccoordenadas').value = posicion.x + ", " + posicion.y;
           referencia = marker;
+
+
         });
-        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.tittle,Horas : [], X:posicionx, Y:posiciony, Categoria: 1});
+        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({Marcador : marker , Titulo : marker.title,Horas : [], X:posicionx, Y:posiciony, Categoria: 1});
+ }
+
+ function Indice(title){
+   var referencia;
+   for (var i = 0; i < Proyecciones[ProyeccionActiva].MarcadoresCollecion.length; i++)
+   {
+     if(Proyecciones[ProyeccionActiva].MarcadoresCollecion[i].Titulo == title)
+     {
+        referencia = Proyecciones[ProyeccionActiva].MarcadoresCollecion[i];
+        break;
+     }
+   }
+   return referencia;
  }
 
 
